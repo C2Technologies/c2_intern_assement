@@ -2,7 +2,7 @@
 
 ## Overview
 
-This assessment requires you to build a simple **To-Do application** using **React, FastAPI, and Tailwind CSS**. The backend will store tasks in a **PostgreSQL database** Use Sqlalchemy orm.
+This assessment requires you to build a simple **To-Do application** using **React, FastAPI, and Tailwind CSS**. The backend will store tasks in a **PostgreSQL database** using SQLAlchemy ORM.
 
 ## Requirements
 
@@ -37,16 +37,16 @@ This assessment requires you to build a simple **To-Do application** using **Rea
 
 ### Frontend (React + Tailwind CSS)
 
-- **State management**: Use `useState`
-- **API Calls**: Use `fetch` or `axios` to communicate with FastAPI server.
-- **Task List UI**: Display tasks with an option to **edit**, **delete**, and **mark complete**.
+- **State management**: Use `useState`.
+- **API Calls**: Use `fetch` or `axios` to communicate with the FastAPI server.
+- **Task List UI**: Display tasks with options to **edit**, **delete**, and **mark complete**.
 - **Filters**: Buttons to show **All, Completed, and Pending** tasks.
 
 ---
 
 ## Evaluation Criteria
 
-🔹 **Code Quality** → Clean, modular, decoupled, readable and well-structured code.  
+🔹 **Code Quality** → Clean, modular, decoupled, readable, and well-structured code.  
 🔹 **Functionality** → Meets all core feature requirements.  
 🔹 **Performance** → API is efficient and UI interactions are smooth.  
 🔹 **Creativity** → Bonus features or design improvements.
@@ -55,8 +55,8 @@ This assessment requires you to build a simple **To-Do application** using **Rea
 
 ## Submission Guidelines
 
-1. **Push the code** to **this GitHub repository** (https://github.com/C2Technologies/c2_intern_assement.git) as a seperate branch using your name its name.
-2. Include a **README.md** explaining how to run the project.
+1. **Push the code** to **GitHub on your profile**.
+2. Include a **README.md** explaining how to run the project and any special notes you want to make us aware of.
 3. **If the project cannot run on our side, it is an automatic failure.**
 
 ---
