@@ -55,7 +55,7 @@ This assessment requires you to build a simple **To-Do application** using **Rea
 
 ## Submission Guidelines
 
-1. **Push the code** to **this GitHub repository** (https://github.com/C2Technologies/c2_intern_assement.git).
+1. **Push the code** to **this GitHub repository** (https://github.com/C2Technologies/c2_intern_assement.git) as a seperate branch using your name its name.
 2. Include a **README.md** explaining how to run the project.
 3. **If the project cannot run on our side, it is an automatic failure.**
 
