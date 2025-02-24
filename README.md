@@ -55,12 +55,14 @@ This assessment requires you to build a simple **To-Do application** using **Rea
 
 ## Submission Guidelines
 
-1. **Push the code** to **GitHub on your profile**.
-2. Include a **README.md** explaining how to run the project and any special notes you want to make us aware of.
-3. **If the project cannot run on our side, it is an automatic failure.**
+1. To start clone this project onto your laptop.
+2. Branch off of master branch creating your own feature branch, with naming convention: todo-app-yourName-yourSurname.
+3. When you're done with building and testing your app, **Push the code** to **GitHub on your profile* - be sure not to push it into the master branch.
+5. Include a **README.md** explaining how to run the project and any special notes you want to make us aware of.
+6. **If the project cannot run on our side, unfortunately then we will not be able to evaluate it properly - so it is improtant that your app works.**
 
 ---
 
 ## Contact
 
-For any questions, reach out to **thulaganyo@lortechnologies.com**.
+For any questions, reach out to **thulaganyo@lortechnologies.com or craig@lortechnologies.com**.
