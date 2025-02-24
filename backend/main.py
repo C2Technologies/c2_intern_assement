@@ -1,6 +1,11 @@
-from fastapi import FastAPI, Path
+from fastapi import FastAPI
 from routes.tasks import router
 from fastapi.middleware.cors import CORSMiddleware
+
+from database.database import engine
+from database.models import task
+
+task.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
