@@ -2,14 +2,21 @@ from typing import Optional, Union
 from data import tasks 
 from fastapi import FastAPI
 from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 class Task(BaseModel):
     title: str
     description: str
-    is_completed: Optional[bool] = None
+    completed: Optional[bool] = None
 
 
 @app.get("/")
