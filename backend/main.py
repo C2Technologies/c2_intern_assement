@@ -24,7 +24,7 @@ def read_root():
     return {"Hello": "World"}
 
 
-@app.get("/api/tasks", response_model=list[Task])
+@app.get("/tasks", response_model=list[Task])
 async def get_all_tasks():
     return tasks
 
