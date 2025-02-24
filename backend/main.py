@@ -1,6 +1,6 @@
-from typing import Optional, Union
-from data import tasks 
-from fastapi import FastAPI
+from typing import Optional, List
+from fastapi import FastAPI, Path
+from data import tasks
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -19,12 +19,16 @@ class Task(BaseModel):
     completed: Optional[bool] = None
 
 
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
-
-
-@app.get("/tasks", response_model=list[Task])
+@app.get("/tasks", response_model=List[Task])
 async def get_all_tasks():
+    return tasks
+
+@app.get("/tasks/{task_id}", response_model=Task)
+async def get_task_by_id(task_id: int):
+    return tasks[task_id]
+
+@app.post("/tasks", response_model=Task)
+async def get_task_by_id(task: Task):
+    tasks.append(task)
     return tasks
 
