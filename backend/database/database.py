@@ -9,6 +9,9 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine, futu
 Base = declarative_base()
 
 def get_db():
+    """
+    This function creates a new database session using SessionLocal from SQLAlchemy
+    """
     db = SessionLocal()
     try:
         yield db
