@@ -63,6 +63,6 @@ This assessment requires you to build a simple **To-Do application** using **Rea
 
 ---
 
-## Contact
+## Contact:
 
 For any questions, reach out to **thulaganyo@lortechnologies.com or craig@lortechnologies.com**.
