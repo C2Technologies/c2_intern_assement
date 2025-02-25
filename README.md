@@ -2,7 +2,7 @@
 
 ## Overview
 
-This assessment requires you to build a simple **To-Do application** using **React, FastAPI, and Tailwind CSS**. The backend will store tasks in a **PostgreSQL database** using SQLAlchemy ORM.
+This assessment requires you to build a simple **To-Do application** using **React, Python FastAPI/Django, and CSS**. The backend will store tasks in a **PostgreSQL database**.
 
 ## Requirements
 
@@ -24,7 +24,7 @@ This assessment requires you to build a simple **To-Do application** using **Rea
 
 ## Technical Requirements
 
-### Backend (FastAPI)
+### Backend
 
 - A **REST API** with the following endpoints:
   - `POST /tasks` → Create a new task.
@@ -35,7 +35,7 @@ This assessment requires you to build a simple **To-Do application** using **Rea
 - Use **PostgreSQL** as the database.
 - Store each task with an **auto-incrementing ID**.
 
-### Frontend (React + Tailwind CSS)
+### Frontend (React + CSS)
 
 - **State management**: Use `useState`.
 - **API Calls**: Use `fetch` or `axios` to communicate with the FastAPI server.
