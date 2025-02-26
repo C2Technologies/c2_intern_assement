@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import {
   getAllTasks,
   createTask,
-  // deleteTask,
+  deleteTask,
   // updateTask,
 } from "./services/tasks";
 import { Form } from "./components/Form";
@@ -52,6 +52,25 @@ const App = () => {
     return null;
   };
 
+  const deleteTodoTask = async (taskId: number, taskTitle: string) => {
+    const confirmTaskDeletion = window.confirm(
+      `Delete ${taskTitle} from your to-do list?`
+    );
+
+    if (!confirmTaskDeletion) {
+      return;
+    }
+
+    try {
+      await deleteTask(taskId);
+      setTodoTasks((previousTodoTasks) =>
+        previousTodoTasks.filter((task) => task.id !== taskId)
+      );
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <>
       <h2>Tasks</h2>
@@ -63,7 +82,7 @@ const App = () => {
         handleSubmit={handleTaskSubmit}
       />
       <h2>Task List</h2>
-      <TaskList tasks={todoTasks} />
+      <TaskList tasks={todoTasks} handleTaskDeletion={deleteTodoTask}/>
     </>
   );
 };
