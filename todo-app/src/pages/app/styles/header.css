@@ -1,0 +1,15 @@
+.container {
+  background-color: gray;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.card {
+  background-color: antiquewhite;
+  padding: 20;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
