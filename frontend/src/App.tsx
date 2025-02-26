@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { getAllTasks, createTask } from "./services/tasks";
+import {
+  getAllTasks,
+  createTask,
+  // deleteTask,
+  // updateTask,
+} from "./services/tasks";
 import { Form } from "./components/Form";
 import { Task, TaskCreate } from "./types/types";
+import { TaskList } from "./components/TaskList";
 
 const App = () => {
   const [todoTasks, setTodoTasks] = useState<Task[]>([]);
@@ -56,7 +62,8 @@ const App = () => {
         handleDescriptionChange={({ target }) => setDescription(target.value)}
         handleSubmit={handleTaskSubmit}
       />
-      {console.log(todoTasks)}
+      <h2>Task List</h2>
+      <TaskList tasks={todoTasks} />
     </>
   );
 };
