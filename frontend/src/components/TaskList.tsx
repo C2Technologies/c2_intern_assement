@@ -1,7 +1,13 @@
 import { Task } from "../types/types";
 import { TaskItem } from "./TaskItem";
 
-const TaskList = ({ tasks }: { tasks: Task[] }) => {
+const TaskList = ({
+  tasks,
+  handleTaskDeletion,
+}: {
+  tasks: Task[];
+  handleTaskDeletion: (taskId: number, taskTitle: string) => void;
+}) => {
   return (
     <div>
       {tasks.map((task) => (
@@ -9,6 +15,7 @@ const TaskList = ({ tasks }: { tasks: Task[] }) => {
           key={task.id}
           title={task.title}
           description={task.description}
+          handleTaskDeletion={() => handleTaskDeletion(task.id, task.title)}
         />
       ))}
     </div>
