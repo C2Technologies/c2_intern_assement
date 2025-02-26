@@ -29,8 +29,8 @@ def json_get_response(task: Todo):
     }
 
 
-def jsons_get_response(task: [Todo]):
+def jsons_get_response(tasks: [Todo]):
     return {
         "statusCode": 200,
-        "data": task
+        "data": tasks
     }

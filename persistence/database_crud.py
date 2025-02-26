@@ -1,4 +1,4 @@
-import database
+from persistence import database
 from model.todo import Todo
 
 
@@ -9,7 +9,7 @@ def add_task(task):
 
 def remove_take_by_id(task_id):
     for task in database.dummy_data:
-        if task.id == id:
+        if task['id'] == task_id:
             database.dummy_data.remove(task)
             return True
     return False
@@ -17,7 +17,7 @@ def remove_take_by_id(task_id):
 
 def update_take_by_id(task_id, task_: Todo):
     for task in database.dummy_data:
-        if task_id == task.id:
+        if task['id'] == task_id:
             task.task_ = task_
             return True
     return False
@@ -25,7 +25,7 @@ def update_take_by_id(task_id, task_: Todo):
 
 def delete_take_by_id(task_id):
     for task in database.dummy_data:
-        if task.id == task_id:
+        if task['id'] == task_id:
             database.dummy_data.remove(task)
             return True
     return False
@@ -33,7 +33,8 @@ def delete_take_by_id(task_id):
 
 def get_take_by_id(task_id):
     for task in database.dummy_data:
-        if task.id == task_id:
+        print(task.keys())
+        if task['id'] == task_id:
             return task
     return None
 

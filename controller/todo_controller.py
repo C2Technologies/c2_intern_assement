@@ -1,6 +1,8 @@
 from fastapi import APIRouter
+
 from persistence import database_crud
 from response import error, success
+from fastapi.responses import RedirectResponse
 
 root_path = "/task"
 from model.todo import Todo
@@ -8,12 +10,26 @@ from model.todo import Todo
 router = APIRouter()
 
 
-@router.get(root_path)
+@router.get("/")
+def main():
+    return RedirectResponse(url="/task", status_code=302)
+
+
+@router.get("/task")
 def get_tasks():
+    tasks = database_crud.get_all_takes()
+    return success.jsons_get_response(tasks)
+
+
+@router.get("/task/{task_id}")
+def get_tasks(task_id: int):
+    tasks = database_crud.get_take_by_id(task_id)
+    if tasks:
+        return success.jsons_get_response(tasks)
     return {"message": "type shii"}
 
 
-@router.post(f'{root_path}/{task_id}')
+@router.post('/task/{task_id}')
 def add_task(task: Todo):
     is_success = database_crud.add_task(task)
     if is_success:
@@ -21,7 +37,7 @@ def add_task(task: Todo):
     return {"message": "type shii"}
 
 
-@router.put(f'{root_path}/{task_id}')
+@router.put('/task/{task_id}')
 def update_task(task_id, task: Todo):
     is_success = database_crud.update_take_by_id(task_id, task)
     if is_success:
@@ -29,7 +45,7 @@ def update_task(task_id, task: Todo):
     return {"message": "type shii"}
 
 
-@router.delete(f'{root_path}/{task_id}')
+@router.delete('/task/{task_id}')
 def delete_task(task_id):
     task_exists = database_crud.get_take_by_id(task_id)
     if task_exists:
