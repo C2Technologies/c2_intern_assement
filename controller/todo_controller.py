@@ -1,4 +1,6 @@
 from fastapi import APIRouter
+from persistence import database_crud
+from response import error, success
 
 root_path = "/task"
 from model.todo import Todo
@@ -13,14 +15,25 @@ def get_tasks():
 
 @router.post(f'{root_path}/{task_id}')
 def add_task(task: Todo):
+    is_success = database_crud.add_task(task)
+    if is_success:
+        return success.json_added_response(task)
     return {"message": "type shii"}
 
 
 @router.put(f'{root_path}/{task_id}')
-def update_task(task: Todo):
+def update_task(task_id, task: Todo):
+    is_success = database_crud.update_take_by_id(task_id, task)
+    if is_success:
+        return success.json_update_response(task)
     return {"message": "type shii"}
 
 
 @router.delete(f'{root_path}/{task_id}')
 def delete_task(task_id):
+    task_exists = database_crud.get_take_by_id(task_id)
+    if task_exists:
+        is_success = database_crud.delete_take_by_id(task_id)
+        if is_success:
+            return success.json_remove_response(task_exists)
     return {"message": "type shii"}

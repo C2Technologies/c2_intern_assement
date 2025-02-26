@@ -29,3 +29,14 @@ def delete_take_by_id(task_id):
             database.dummy_data.remove(task)
             return True
     return False
+
+
+def get_take_by_id(task_id):
+    for task in database.dummy_data:
+        if task.id == task_id:
+            return task
+    return None
+
+
+def get_all_takes():
+    return database.dummy_data
