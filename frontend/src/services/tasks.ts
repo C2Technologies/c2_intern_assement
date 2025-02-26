@@ -3,15 +3,24 @@ import { TaskCreate } from "../types/types";
 
 const baseUrl = "http://127.0.0.1:8000/tasks";
 
-
 const getAllTasks = async () => {
   const response = await axios.get(baseUrl);
   return response.data;
 };
 
 const createTask = async (object: TaskCreate) => {
-  const response = await axios.post(baseUrl, object)
-  return response.data
-}
+  const response = await axios.post(baseUrl, object);
+  return response.data;
+};
 
-export { getAllTasks, createTask};
+const updateTask = async (taskID: number, newObject: TaskCreate) => {
+  const response = await axios.put(`${baseUrl}/${taskID}`, newObject);
+  return response.data;
+};
+
+const deleteTask = async (taskID: number) => {
+  const response = await axios.delete(`${baseUrl}/${taskID}`);
+  return response.data;
+};
+
+export { getAllTasks, createTask, updateTask, deleteTask };
