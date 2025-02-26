@@ -1,17 +1,17 @@
 interface FormProps {
   title: string;
-  content: string;
+  description: string;
   handleSubmit: (event: React.FormEvent) => void;
   handleTitleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  handleContentChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleDescriptionChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Form = ({
   title,
-  content,
+  description,
   handleSubmit,
   handleTitleChange,
-  handleContentChange,
+  handleDescriptionChange,
 }: FormProps) => {
   return (
     <div>
@@ -26,12 +26,12 @@ const Form = ({
           />
         </div>
         <div>
-          <label htmlFor="content">Content</label>
+          <label htmlFor="description">Description</label>
           <input
-            id="content"
+            id="description"
             type="text"
-            value={content}
-            onChange={handleContentChange}
+            value={description}
+            onChange={handleDescriptionChange}
           />
         </div>
         <button type="submit">Add Task</button>
