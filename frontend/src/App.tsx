@@ -1,20 +1,12 @@
 import React, { useEffect, useState } from "react";
-import getAllTasks from "./services/tasks";
+import { getAllTasks, createTask } from "./services/tasks";
 import { Form } from "./components/Form";
-
-interface Task {
-  id: number;
-  title: string;
-  content: string;
-  completed: boolean;
-  createdAt: string;
-  updatedAt: string | null;
-}
+import { Task, TaskCreate } from "./types/types";
 
 const App = () => {
   const [todoTasks, setTodoTasks] = useState<Task[]>([]);
   const [title, setTitle] = useState<string>("");
-  const [content, setContent] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
 
   useEffect(() => {
     const fetchToDoTasks = async () => {
@@ -28,29 +20,40 @@ const App = () => {
     fetchToDoTasks();
   }, []);
 
-  // const resetInputFields = () => {
-  //   setTitle("");
-  //   setTitle("");
-  // };
+  const resetInputFields = () => {
+    setTitle("");
+    setDescription("");
+  };
 
-  
   const handleTaskSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
+    try {
+      const newTask: TaskCreate = {
+        title,
+        description,
+      };
+      const createdTask = await createTask(newTask);
+      setTodoTasks(todoTasks.concat(createdTask));
+      resetInputFields();
+
+      const updatedTodoTasks = await getAllTasks();
+      setTodoTasks(updatedTodoTasks);
+    } catch (error) {
+      console.error(error);
+    }
+
     return null;
   };
-
-
-
 
   return (
     <>
       <h2>Tasks</h2>
       <Form
         title={title}
-        content={content}
+        description={description}
         handleTitleChange={({ target }) => setTitle(target.value)}
-        handleContentChange={({ target }) => setContent(target.value)}
+        handleDescriptionChange={({ target }) => setDescription(target.value)}
         handleSubmit={handleTaskSubmit}
       />
       {console.log(todoTasks)}
