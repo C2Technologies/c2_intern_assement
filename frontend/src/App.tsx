@@ -3,6 +3,7 @@ import {
   getAllTasks,
   createTask,
   deleteTask,
+  updateTaskStatus,
   // updateTask,
 } from "./services/tasks";
 import { Form } from "./components/Form";
@@ -52,6 +53,19 @@ const App = () => {
     return null;
   };
 
+  const changeTaskStatus = async (taskId: number, completed: boolean) => {
+    const newState = !completed;
+
+    try {
+      await updateTaskStatus(taskId, newState);
+
+      const updatedTodoTasks = await getAllTasks();
+      setTodoTasks(updatedTodoTasks);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const deleteTodoTask = async (taskId: number, taskTitle: string) => {
     const confirmTaskDeletion = window.confirm(
       `Delete ${taskTitle} from your to-do list?`
@@ -82,7 +96,11 @@ const App = () => {
         handleSubmit={handleTaskSubmit}
       />
       <h2>Task List</h2>
-      <TaskList tasks={todoTasks} handleTaskDeletion={deleteTodoTask}/>
+      <TaskList
+        tasks={todoTasks}
+        handleStatusChange={changeTaskStatus}
+        handleTaskDeletion={deleteTodoTask}
+      />
     </>
   );
 };

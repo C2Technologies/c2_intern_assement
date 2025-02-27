@@ -18,9 +18,14 @@ const updateTask = async (taskID: number, newObject: TaskCreate) => {
   return response.data;
 };
 
+const updateTaskStatus = async (taskID: number, completed: boolean) => {
+  const response = await axios.patch(`${baseUrl}/${taskID}`, { completed })
+  return response.data
+}
+
 const deleteTask = async (taskID: number) => {
   const response = await axios.delete(`${baseUrl}/${taskID}`);
   return response.data;
 };
 
-export { getAllTasks, createTask, updateTask, deleteTask };
+export { getAllTasks, createTask, updateTask, updateTaskStatus,deleteTask };
