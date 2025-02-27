@@ -1,7 +1,7 @@
 import { SignedIn, SignedOut, SignInButton } from "@clerk/clerk-react";
-import Index from "./pages/app/Index";
+import Index from "../app/Index";
 
-export default function App() {
+export default function Auth() {
   return (
     <header>
       <SignedOut>

@@ -33,7 +33,6 @@ def delete_take_by_id(task_id):
 
 def get_take_by_id(task_id):
     for task in database.dummy_data:
-        print(task.keys())
         if task['id'] == task_id:
             return task
     return None

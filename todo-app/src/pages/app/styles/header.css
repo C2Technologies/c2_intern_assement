@@ -1,11 +1,8 @@
 .header {
   display: flex;
   justify-content: space-between;
-  background-color: #1a1a1a;
   color: white;
-  padding: 20px;
-  padding-right: 50px;
-  width: 100%;
+  padding-top: 20px;
 }
 
 .header-left h2 {
@@ -28,4 +25,5 @@
   color: white;
   border-radius: 5px;
   cursor: pointer;
+  margin-top: 20px;
 }
