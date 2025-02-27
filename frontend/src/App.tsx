@@ -9,6 +9,7 @@ import {
 import { Form } from "./components/Form";
 import { Task, TaskCreate } from "./types/types";
 import { TaskList } from "./components/TaskList";
+import { ToggleForm } from "./components/ToggleForm";
 
 const App = () => {
   const [todoTasks, setTodoTasks] = useState<Task[]>([]);
@@ -88,13 +89,15 @@ const App = () => {
   return (
     <>
       <h2>Tasks</h2>
-      <Form
-        title={title}
-        description={description}
-        handleTitleChange={({ target }) => setTitle(target.value)}
-        handleDescriptionChange={({ target }) => setDescription(target.value)}
-        handleSubmit={handleTaskSubmit}
-      />
+      <ToggleForm buttonLabel="Add new task">
+        <Form
+          title={title}
+          description={description}
+          handleTitleChange={({ target }) => setTitle(target.value)}
+          handleDescriptionChange={({ target }) => setDescription(target.value)}
+          handleSubmit={handleTaskSubmit}
+        />
+      </ToggleForm>
       <h2>Task List</h2>
       <TaskList
         tasks={todoTasks}
