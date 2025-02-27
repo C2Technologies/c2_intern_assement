@@ -34,7 +34,7 @@ const Form = ({
             onChange={handleDescriptionChange}
           />
         </div>
-        <button type="submit">Add Task</button>
+        <button type="submit">Add</button>
       </form>
     </div>
   );
