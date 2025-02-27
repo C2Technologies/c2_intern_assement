@@ -1,14 +1,19 @@
-import { UserButton } from "@clerk/clerk-react";
+import "../styles/header.css";
 
-const header = () => {
+const Header = () => {
   return (
-    <div>
-      <div>
-        <h1>Notify</h1>
-        <UserButton />
+    <div className="header">
+      <div className="header-left">
+        <h2>
+          Tasks <span className="badge">12</span>
+        </h2>
+      </div>
+
+      <div className="header-controls">
+        <button className="new-btn">+ New</button>
       </div>
     </div>
   );
 };
 
-export default header;
+export default Header;
