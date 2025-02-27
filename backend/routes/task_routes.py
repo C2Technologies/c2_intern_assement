@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session 
 from typing import List
-from schemas.task_schema import Task, TaskCreate, TaskUpdate
+from schemas.task_schema import Task, TaskCreate, TaskUpdate, TaskCompletionUpdate
 from database.database import get_db
 from database.models.task_model import Task as DBTask
 
@@ -9,7 +9,7 @@ router = APIRouter()
 
 def get_task_or_404(task_id: int, db: Session) -> DBTask:
     """
-    Fetch a task by its iD or raise a 404 not found error if ID is not found
+    Fetch a task by its ID or raise a 404 not found error if ID is not found
     """
     task = db.query(DBTask).filter(DBTask.id == task_id).first()
     if not task:
@@ -67,6 +67,20 @@ async def update_task(task_id: int, task: TaskUpdate, db: Session = Depends(get_
     except Exception as e:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Error updating task")
     return task_to_update
+
+
+@router.patch("/tasks/{task_id}", response_model=Task)
+async def update_completed_status(task_id: int, completion_update: TaskCompletionUpdate, db: Session = Depends(get_db)):
+    task_to_update = get_task_or_404(task_id, db)
+    
+    try:    
+        task_to_update.completed = completion_update.completed
+        db.commit()
+        db.refresh(task_to_update)
+    except Exception as e:
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Error updating task completion status")
+    return task_to_update
+    
 
 
 @router.delete("/tasks/{task_id}", status_code=status.HTTP_204_NO_CONTENT)

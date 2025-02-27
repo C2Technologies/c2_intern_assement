@@ -21,6 +21,14 @@ class TaskUpdate(TaskBase):
     Schema for updating an existing task
     """
     title: Optional[str] = None
+    description: Optional[str] = None
+
+
+class TaskCompletionUpdate(BaseModel):
+    """
+    Schema for updating only a task's completion status
+    """
+    completed: bool
 
 class Task(TaskBase):
     """
