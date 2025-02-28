@@ -4,7 +4,7 @@ interface FilterButtonsProps {
   onFilterChange: (filter: FilterType) => void;
 }
 
-const FilterButtons = ({
+const FilterRadioInputs = ({
   currentFilter,
   onFilterChange,
 }: FilterButtonsProps) => {
@@ -40,11 +40,11 @@ const FilterButtons = ({
             checked={currentFilter === "PENDING"}
             onChange={() => onFilterChange("PENDING")}
           />{" "}
-          All
+          Pending
         </label>
       </div>
     </div>
   );
 };
 
-export { FilterButtons };
+export { FilterRadioInputs };
