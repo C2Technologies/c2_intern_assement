@@ -11,3 +11,5 @@ export interface TaskCreate {
   title: string;
   description: string;
 }
+
+export type FilterType = "ALL" | "COMPLETED" | "PENDING";

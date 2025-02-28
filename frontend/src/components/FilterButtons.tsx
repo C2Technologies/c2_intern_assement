@@ -1,5 +1,4 @@
-type FilterType = "ALL" | "COMPLETED" | "PENDING";
-
+import { FilterType } from "../types/types";
 interface FilterButtonsProps {
   currentFilter: FilterType;
   onFilterChange: (filter: FilterType) => void;
