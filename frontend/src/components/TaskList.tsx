@@ -5,10 +5,12 @@ const TaskList = ({
   tasks,
   handleStatusChange,
   handleTaskDeletion,
+  handleTaskEdit
 }: {
   tasks: Task[];
   handleStatusChange: (taskIdL: number, completed: boolean) => void;
   handleTaskDeletion: (taskId: number, taskTitle: string) => void;
+  handleTaskEdit: (task: Task) => void;
 }) => {
   return (
     <div>
@@ -20,6 +22,7 @@ const TaskList = ({
           description={task.description}
           handleStatusChange={() => handleStatusChange(task.id, task.completed)}
           handleTaskDeletion={() => handleTaskDeletion(task.id, task.title)}
+          handleTaskEdit={() => handleTaskEdit(task)}
         />
       ))}
     </div>
