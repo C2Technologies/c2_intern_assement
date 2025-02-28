@@ -4,6 +4,7 @@ interface TaskDetails {
   completed: boolean;
   handleStatusChange: () => void;
   handleTaskDeletion: () => void;
+  handleTaskEdit: () => void;
 }
 
 const TaskItem = ({
@@ -12,12 +13,14 @@ const TaskItem = ({
   completed,
   handleStatusChange,
   handleTaskDeletion,
+  handleTaskEdit
 }: TaskDetails) => {
   return (
     <div>
       <p>{title}</p>
       <p>{description}</p>
-      <button onClick={handleTaskDeletion}>delete</button>
+      <button onClick={handleTaskDeletion}>Delete</button>
+      <button onClick={handleTaskEdit}>Edit</button>
       <label>
         Mark as completed:{" "}
         <input
