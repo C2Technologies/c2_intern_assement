@@ -4,7 +4,7 @@ import {
   createTask,
   deleteTask,
   updateTaskStatus,
-  // updateTask,
+  updateTask,
 } from "./services/tasks";
 import { Form } from "./components/Form";
 import { Task, TaskCreate } from "./types/types";
@@ -15,6 +15,8 @@ const App = () => {
   const [todoTasks, setTodoTasks] = useState<Task[]>([]);
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
+  const [editingTaskId, setEditingTaskId] = useState<number | null>(null);
+  const [formVisible, setFormVisible] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchToDoTasks = async () => {
@@ -33,25 +35,36 @@ const App = () => {
     setDescription("");
   };
 
+  const handleTaskEdit = (task: Task) => {
+    setTitle(task.title);
+    setDescription(task.description);
+    setEditingTaskId(task.id);
+
+    setFormVisible(true);
+  };
+
   const handleTaskSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
     try {
-      const newTask: TaskCreate = {
+      const taskData: TaskCreate = {
         title,
         description,
       };
-      const createdTask = await createTask(newTask);
-      setTodoTasks(todoTasks.concat(createdTask));
-      resetInputFields();
 
+      if (editingTaskId !== null) {
+        await updateTask(editingTaskId, taskData);
+        setEditingTaskId(null);
+      } else {
+        await createTask(taskData);
+      }
+
+      resetInputFields();
       const updatedTodoTasks = await getAllTasks();
       setTodoTasks(updatedTodoTasks);
     } catch (error) {
       console.error(error);
     }
-
-    return null;
   };
 
   const changeTaskStatus = async (taskId: number, completed: boolean) => {
@@ -89,13 +102,19 @@ const App = () => {
   return (
     <>
       <h2>Tasks</h2>
-      <ToggleForm buttonLabel="Add new task">
+      <ToggleForm
+        buttonLabel={editingTaskId !== null ? "Edit Task" : "Add new Task"}
+        onCancel={resetInputFields}
+        isVisible={formVisible}
+        setIsVisible={setFormVisible}
+      >
         <Form
           title={title}
           description={description}
           handleTitleChange={({ target }) => setTitle(target.value)}
           handleDescriptionChange={({ target }) => setDescription(target.value)}
           handleSubmit={handleTaskSubmit}
+          submitButtonText={editingTaskId !== null ? "Update" : "Add"}
         />
       </ToggleForm>
       <h2>Task List</h2>
@@ -103,6 +122,7 @@ const App = () => {
         tasks={todoTasks}
         handleStatusChange={changeTaskStatus}
         handleTaskDeletion={deleteTodoTask}
+        handleTaskEdit={handleTaskEdit}
       />
     </>
   );
