@@ -4,6 +4,7 @@ interface FormProps {
   handleSubmit: (event: React.FormEvent) => void;
   handleTitleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleDescriptionChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  submitButtonText?: string
 }
 
 const Form = ({
@@ -12,6 +13,7 @@ const Form = ({
   handleSubmit,
   handleTitleChange,
   handleDescriptionChange,
+  submitButtonText = "Add"
 }: FormProps) => {
   return (
     <div>
@@ -34,7 +36,7 @@ const Form = ({
             onChange={handleDescriptionChange}
           />
         </div>
-        <button type="submit">Add</button>
+        <button type="submit">{submitButtonText}</button>
       </form>
     </div>
   );
