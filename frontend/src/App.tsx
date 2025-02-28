@@ -7,9 +7,10 @@ import {
   updateTask,
 } from "./services/tasks";
 import { Form } from "./components/Form";
-import { Task, TaskCreate } from "./types/types";
+import { FilterType, Task, TaskCreate } from "./types/types";
 import { TaskList } from "./components/TaskList";
 import { ToggleForm } from "./components/ToggleForm";
+import { FilterRadioInputs } from "./components/FilterRadioInputs";
 
 const App = () => {
   const [todoTasks, setTodoTasks] = useState<Task[]>([]);
@@ -17,6 +18,7 @@ const App = () => {
   const [description, setDescription] = useState<string>("");
   const [editingTaskId, setEditingTaskId] = useState<number | null>(null);
   const [formVisible, setFormVisible] = useState<boolean>(false);
+  const [currentFilter, setCurrentFilter] = useState<FilterType>("ALL");
 
   useEffect(() => {
     const fetchToDoTasks = async () => {
@@ -99,6 +101,17 @@ const App = () => {
     }
   };
 
+  const handleFilterChange = (filterType: FilterType) => {
+    setCurrentFilter(filterType);
+  };
+
+  const filteredTasks = todoTasks.filter((task) => {
+    if (currentFilter === "ALL") return true;
+    if (currentFilter === "COMPLETED") return task.completed;
+    if (currentFilter === "PENDING") return !task.completed;
+    return true;
+  });
+
   return (
     <>
       <h2>Tasks</h2>
@@ -118,8 +131,12 @@ const App = () => {
         />
       </ToggleForm>
       <h2>Task List</h2>
+      <FilterRadioInputs
+        currentFilter={currentFilter}
+        onFilterChange={handleFilterChange}
+      />
       <TaskList
-        tasks={todoTasks}
+        tasks={filteredTasks}
         handleStatusChange={changeTaskStatus}
         handleTaskDeletion={deleteTodoTask}
         handleTaskEdit={handleTaskEdit}
