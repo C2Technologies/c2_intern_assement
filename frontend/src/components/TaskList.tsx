@@ -5,7 +5,7 @@ const TaskList = ({
   tasks,
   handleStatusChange,
   handleTaskDeletion,
-  handleTaskEdit
+  handleTaskEdit,
 }: {
   tasks: Task[];
   handleStatusChange: (taskIdL: number, completed: boolean) => void;
@@ -14,7 +14,7 @@ const TaskList = ({
 }) => {
   return (
     <div>
-      {tasks.map((task) => (
+      {tasks.length === 0 ? <p>No tasks</p> : tasks.map((task) => (
         <TaskItem
           key={task.id}
           title={task.title}
