@@ -1,18 +1,42 @@
+import { useState } from "react";
 import "../styles/header.css";
-
-const Header = () => {
+import TodoModal from "./ModifyTodo";
+type props = {
+  taskCount: number;
+};
+const Header = ({ taskCount }: props) => {
+  const [edit, setEdit] = useState(false);
   return (
-    <div className="header">
-      <div className="header-left">
-        <h2>
-          Tasks <span className="badge">12</span>
-        </h2>
+    <>
+      {edit && (
+        <TodoModal
+          isOpen={edit}
+          onCancel={() => {
+            setEdit(false);
+          }}
+          onSave={() => {
+            setEdit(false);
+          }}
+        />
+      )}
+      <div className="header">
+        <div className="header-left">
+          <h2>
+            Tasks <span className="badge">{taskCount}</span>
+          </h2>
+        </div>
+        <div className="header-controls">
+          <button
+            onClick={() => {
+              setEdit(true);
+            }}
+            className="new-btn"
+          >
+            + New
+          </button>
+        </div>
       </div>
-
-      <div className="header-controls">
-        <button className="new-btn">+ New</button>
-      </div>
-    </div>
+    </>
   );
 };
 

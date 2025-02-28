@@ -1,36 +1,70 @@
 import { useState } from "react";
 import "../styles/TodoTask.css";
 import { Todo } from "../../../models/Task";
+import ModifyTodo from "./ModifyTodo";
 
 type TodoTaskProps = {
   task: Todo;
+  onSave: (updatedTodo: Todo) => void;
+  onCancel: () => void;
 };
 
-const TodoTask: React.FC<TodoTaskProps> = ({ task }) => {
+const TodoTask: React.FC<TodoTaskProps> = ({ task, onSave, onCancel }) => {
   const [completed, setCompleted] = useState(task.completed);
+  const [edit, setEdit] = useState(false);
 
   const handleStatusChange = () => {
     setCompleted(!completed);
   };
 
-  const handleDelete = () => {};
+  const handleSave = (updatedTodo: Todo) => {
+    onSave(updatedTodo);
+    setEdit(false);
+  };
+
+  // Cancel edit mode
+  const handleCancel = () => {
+    setEdit(false);
+    onCancel();
+  };
+
+  // Handle delete (implement later)
+  const handleDelete = async () => {
+    console.log(`Deleting task: ${task.id}`);
+  };
 
   return (
-    <div className="task-item">
-      <div>
-        <span className="task-title">{task.title}</span>
-        <p>{task.description}</p>
-      </div>
+    <>
+      {edit && (
+        <ModifyTodo
+          isOpen={edit}
+          currentTodo={task}
+          onCancel={() => {
+            setEdit(false);
+          }}
+          onSave={() => {}}
+        />
+      )}
 
-      <div className="task-actions">
-        <button className="status-btn" onClick={handleStatusChange}>
-          {completed ? "Completed" : "Mark as Complete"}
-        </button>
-        <button className="delete-btn" onClick={handleDelete}>
-          Delete
-        </button>
+      <div className="task-item">
+        <div>
+          <h1 className="task-title">{task.title}</h1>
+          <span>{task.description}</span>
+        </div>
+
+        <div className="task-actions">
+          <button className="status-btn" onClick={handleStatusChange}>
+            {completed ? "Completed" : "Mark as Complete"}
+          </button>
+          <button className="edit-btn" onClick={() => setEdit(true)}>
+            Edit
+          </button>
+          <button className="delete-btn" onClick={handleDelete}>
+            Delete
+          </button>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

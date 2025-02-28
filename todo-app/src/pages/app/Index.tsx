@@ -4,46 +4,16 @@ import Sidebar from "./components/Sidebar";
 import "./styles/dropdown.css";
 import TodoTask from "./components/TodoTask";
 import { Todo } from "../../models/Task";
+import ModifyTodo from "./components/ModifyTodo";
+import UseTasks from "../../hooks/UseTasks";
 
 const Index = () => {
   const [selectedOption, setSelectedOption] = useState(
     "Status (In progress first)"
   );
+  const tasks = UseTasks();
 
-  const options = [
-    "Status (In progress first)",
-    "Status (Completed first)",
-    "Priority (High to Low)",
-    "Priority (Low to High)",
-    "Date (Newest first)",
-    "Date (Oldest first)",
-  ];
-  const todos: Todo[] = [
-    {
-      id: 1,
-      title: "Buy groceries",
-      description: "Milk, Bread, Eggs",
-      completed: false,
-    },
-    {
-      id: 2,
-      title: "Finish project",
-      description: "Complete the dashboard UI",
-      completed: true,
-    },
-    {
-      id: 3,
-      title: "Workout",
-      description: "Go for a 30-minute run",
-      completed: false,
-    },
-    {
-      id: 4,
-      title: "Read a book",
-      description: "Read 50 pages of 'Atomic Habits'",
-      completed: true,
-    },
-  ];
+  const options = ["All", "Status (In progress)", "Status (Completed)"];
 
   return (
     <div
@@ -64,7 +34,7 @@ const Index = () => {
           paddingRight: 40,
         }}
       >
-        <Header />
+        <Header taskCount={tasks !== undefined ? tasks.data.length : 0} />
         <div className="sort-by-dropdown">
           <span className="label">Sort by</span>
           <select
@@ -80,9 +50,8 @@ const Index = () => {
           </select>
         </div>
         <div>
-          {todos.map((task) => (
-            <TodoTask task={task} />
-          ))}
+          {tasks !== undefined &&
+            tasks.data.map((task: Todo) => <TodoTask task={task} />)}
         </div>
       </div>
     </div>

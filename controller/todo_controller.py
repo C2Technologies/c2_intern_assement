@@ -12,10 +12,10 @@ router = APIRouter()
 
 @router.get("/")
 def main():
-    return RedirectResponse(url="/task", status_code=302)
+    return RedirectResponse(url="/tasks", status_code=302)
 
 
-@router.get("/task")
+@router.get("/tasks")
 def get_tasks():
     tasks = database_crud.get_all_takes()
     return success.jsons_get_response(tasks)
