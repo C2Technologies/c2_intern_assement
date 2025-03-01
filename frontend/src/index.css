@@ -8,23 +8,23 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 12px 0px;
-  border: 1px solid black;
-  border-radius: 10px;
-  padding: 15px;
+  margin: 0.75em 0;
+  border: 0.0625em solid black;
+  border-radius: 0.625em;
+  padding: 0.9375em;
 }
 
 .task-left {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 0.9375em;
 }
 
 .task-right {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 0.6253em;
 }
 
 .delete-btn, .edit-btn {
@@ -34,13 +34,13 @@
 }
 
 .delete-btn img {
-    width: 25px;
+    width: 1.5625em;
     height: auto;
     transform: 0.2s ease-in-out;
 }
 
 .edit-btn img {
-    width: 20px;
+    width: 1.25em;
     height: auto;
     transform: 0.2s ease-in-out;
 }
@@ -59,10 +59,10 @@
 
 .custom-checkbox span {
     display: inline-block;
-    width: 20px;
-    height: 20px;
+    width: 1.25em;
+    height: 1.25em;
     border-radius: 50%;
-    border: 1px solid black;
+    border: 0.0625em solid black;
     position: relative;
     cursor: pointer;
     transform: all 0.2s ease-in-out;
@@ -75,9 +75,9 @@
 
 .custom-checkbox input:checked + span::after {
     content: "✔";
-    font-size: 17px;
+    font-size: 1.0625em;
     color: white;
     position: absolute;
-    margin-left: 2px;
+    margin-left: 0.125em;
 }
 
