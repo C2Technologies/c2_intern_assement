@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "../styles/ModifyTodo.css";
 import { Todo } from "../../../models/Task";
-
+import UseTasks from "../../../hooks/UseTasks";
 export default function TodoModal({
   isOpen,
   onSave,
@@ -16,6 +16,7 @@ export default function TodoModal({
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [completed, setCompleted] = useState(false);
+  const tasks = UseTasks();
 
   useEffect(() => {
     if (currentTodo !== undefined) {
@@ -32,7 +33,7 @@ export default function TodoModal({
     }
 
     const newTodo: Todo = {
-      id: Date.now(),
+      id: tasks.length,
       title,
       description,
       completed,

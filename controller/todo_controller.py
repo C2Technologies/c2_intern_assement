@@ -1,13 +1,11 @@
-from typing import Annotated
-
 from fastapi import APIRouter, Body, Depends, HTTPException
 from fastapi.responses import RedirectResponse
 from sqlmodel import Session
 
-from model.todo import Task
+from model.todo import Task, ClientTask
 from persistence import database_crud
 from persistence.database import get_session
-from response import success  # Ensure these modules handle JSON responses correctly
+from response import success
 
 router = APIRouter()
 
