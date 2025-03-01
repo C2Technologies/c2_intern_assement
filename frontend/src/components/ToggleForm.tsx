@@ -34,7 +34,7 @@ const ToggleForm = ({
   };
 
   return (
-    <div>
+    <div className="toggle-form-btn">
       {!visible && (
         <button onClick={toggleVisibility} className="submit-btn">
           {buttonLabel}

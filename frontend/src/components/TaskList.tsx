@@ -14,7 +14,7 @@ const TaskList = ({
 }) => {
   return (
     <div className="task-list">
-      {tasks.length === 0 ? <p>No tasks</p> : tasks.map((task) => (
+      {tasks.length === 0 ? <p className="no-tasks">No tasks</p> : tasks.map((task) => (
         <TaskItem
           key={task.id}
           title={task.title}

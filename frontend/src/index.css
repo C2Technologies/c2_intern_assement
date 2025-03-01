@@ -16,6 +16,7 @@ body {
 /* TaskList styles */
 .task-list {
   margin-top: 1em;
+  height: 100vh;
 }
 
 /* TaskItem styles */
@@ -241,4 +242,16 @@ body {
   to {
     transform: rotate(360deg);
   }
+}
+
+.no-tasks {
+  font-size: 2em;
+  font-weight: bolder;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.toggle-form-btn {
+  margin: 1em;
 }
