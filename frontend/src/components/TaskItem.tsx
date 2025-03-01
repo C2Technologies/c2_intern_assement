@@ -13,23 +13,27 @@ const TaskItem = ({
   completed,
   handleStatusChange,
   handleTaskDeletion,
-  handleTaskEdit
+  handleTaskEdit,
 }: TaskDetails) => {
   return (
-    <div>
-      <p>{title}</p>
-      <p>{description}</p>
-      <button onClick={handleTaskDeletion}>Delete</button>
-      <button onClick={handleTaskEdit}>Edit</button>
-      <label>
-        Mark as completed:{" "}
-        <input
-          type="checkbox"
-          name="completionStatus"
-          checked={completed}
-          onChange={handleStatusChange}
-        />
-      </label>
+    <div className="task-container">
+      <div className="task-left">
+        <label>
+          <input
+            type="checkbox"
+            name="completionStatus"
+            checked={completed}
+            onChange={handleStatusChange}
+          />
+          {/* Mark as completed:{" "} */}
+        </label>
+        <p>{title}</p>
+      </div>
+      <div className="task-right">
+        <button onClick={handleTaskDeletion}>Delete</button>
+        <button onClick={handleTaskEdit}>Edit</button>
+      </div>
+      {/* <p>{description}</p> */}
     </div>
   );
 };
