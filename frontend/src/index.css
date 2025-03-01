@@ -17,6 +17,7 @@
 .task-left {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
 }
 
@@ -47,3 +48,36 @@
 .delete-btn img:hover, .edit-btn img:hover {
     transform: scale(1.2);
 }
+
+.task-name {
+    font-size: 20px;
+}
+
+.custom-checkbox input {
+    display: none;
+}
+
+.custom-checkbox span {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid black;
+    position: relative;
+    cursor: pointer;
+    transform: all 0.2s ease-in-out;
+}
+
+.custom-checkbox input:checked + span {
+    background-color: green;
+    border-color: #4CAF50;
+}
+
+.custom-checkbox input:checked + span::after {
+    content: "✔";
+    font-size: 17px;
+    color: white;
+    position: absolute;
+    margin-left: 2px;
+}
+

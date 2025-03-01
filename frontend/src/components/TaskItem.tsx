@@ -9,7 +9,7 @@ interface TaskDetails {
 
 const TaskItem = ({
   title,
-  description,
+  // description,
   completed,
   handleStatusChange,
   handleTaskDeletion,
@@ -18,16 +18,16 @@ const TaskItem = ({
   return (
     <div className="task-container">
       <div className="task-left">
-        <label>
+        <label className="custom-checkbox">
           <input
             type="checkbox"
             name="completionStatus"
             checked={completed}
             onChange={handleStatusChange}
           />
-          {/* Mark as completed:{" "} */}
+          <span></span>
         </label>
-        <p>{title}</p>
+        <p className="task-name">{title}</p>
       </div>
       <div className="task-right">
         <button onClick={handleTaskEdit} className="edit-btn">
