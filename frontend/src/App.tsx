@@ -19,6 +19,7 @@ const App = () => {
   const [editingTaskId, setEditingTaskId] = useState<number | null>(null);
   const [formVisible, setFormVisible] = useState<boolean>(false);
   const [currentFilter, setCurrentFilter] = useState<FilterType>("ALL");
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchToDoTasks = async () => {
@@ -47,6 +48,7 @@ const App = () => {
 
   const handleTaskSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+    setLoading(true);
 
     try {
       const taskData: TaskCreate = {
@@ -66,6 +68,8 @@ const App = () => {
       setTodoTasks(updatedTodoTasks);
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -137,6 +141,7 @@ const App = () => {
           handleDescriptionChange={({ target }) => setDescription(target.value)}
           handleSubmit={handleTaskSubmit}
           submitButtonText={editingTaskId !== null ? "Update" : "Add"}
+          loading={loading}
         />
       </ToggleForm>
       {/* <FilterRadioInputs
