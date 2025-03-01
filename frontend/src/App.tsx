@@ -144,10 +144,10 @@ const App = () => {
           loading={loading}
         />
       </ToggleForm>
-      {/* <FilterRadioInputs
+      <FilterRadioInputs
         currentFilter={currentFilter}
         onFilterChange={handleFilterChange}
-      /> */}
+      />
       <TaskList
         tasks={filteredTasks}
         handleStatusChange={changeTaskStatus}
