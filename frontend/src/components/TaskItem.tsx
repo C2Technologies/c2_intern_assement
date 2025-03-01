@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { TaskDescriptionDialog } from "./TaskDescriptionDialog";
 
 interface TaskDetails {
   title: string;
@@ -17,10 +18,10 @@ const TaskItem = ({
   handleTaskDeletion,
   handleTaskEdit,
 }: TaskDetails) => {
-  const [isExpanded, setIsExpanded] = useState<boolean>(false);
+  const [showDialog, setShowDialog] = useState<boolean>(false);
 
-  const toggleDescription = () => {
-    setIsExpanded(!isExpanded);
+  const toggleDialog = () => {
+    setShowDialog(!showDialog);
   };
 
   return (
@@ -38,12 +39,12 @@ const TaskItem = ({
         <p className="task-name">{title}</p>
       </div>
       <div className="task-right">
-        <button onClick={toggleDescription} className="expand-btn">
+        <button onClick={toggleDialog} className="expand-btn">
           <img
             src={`public/images/${
-              isExpanded ? "chevron-up" : "chevron-down"
+              showDialog ? "chevron-up" : "chevron-down"
             }.svg`}
-            alt={isExpanded ? "collapse" : "expand"}
+            alt={showDialog ? "collapse" : "expand"}
           />
         </button>
         <button onClick={handleTaskEdit} className="edit-btn">
@@ -53,11 +54,13 @@ const TaskItem = ({
           <img src="public/images/icons8-trash-1-dark.svg" alt="delete icon" />
         </button>
       </div>
-      {/* {isExpanded && description && (
-        <div className="task-description">
-          <p>{description}</p>
-        </div>
-      )} */}
+      {showDialog && description && (
+        <TaskDescriptionDialog
+          title={title}
+          description={description}
+          onClose={toggleDialog}
+        />
+      )}
     </div>
   );
 };
