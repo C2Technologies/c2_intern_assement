@@ -13,7 +13,7 @@ const TaskList = ({
   handleTaskEdit: (task: Task) => void;
 }) => {
   return (
-    <div>
+    <div className="task-list">
       {tasks.length === 0 ? <p>No tasks</p> : tasks.map((task) => (
         <TaskItem
           key={task.id}

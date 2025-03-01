@@ -37,9 +37,13 @@ const ToggleForm = ({
         </button>
       )}
       {visible && (
-        <div>
-          {children}
-          <div className="form-actions">
+        <div className="task-edit-container">
+          <div className="task-header">
+            <span className="edit-task-title">Default Task</span>
+            <span className="edit-task-date">31/12/2020</span>
+          </div>
+          <div className="task-form-edit">{children}</div>
+          <div className="task-footer">
             <button onClick={toggleVisibility} className="close-btn">
               Close
             </button>

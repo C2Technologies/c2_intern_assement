@@ -13,15 +13,21 @@ body {
   color: white;
 }
 
+/* TaskList styles */
+.task-list {
+  margin-top: 1em;
+}
+
 /* TaskItem styles */
 .task-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0.75em 0;
+  margin: 0.5em 0.75em;
   border: 0.125em solid hsla(0, 0%, 100%, 0.4);
   border-radius: 0.625em;
   padding: 0.9375em;
+  background-color: #2c3033;
 }
 
 .task-left {
@@ -74,7 +80,7 @@ body {
   width: 1.25em;
   height: 1.25em;
   border-radius: 50%;
-  border: 0.0625em solid black;
+  border: 0.125em solid hsla(0, 0%, 100%, 0.4);
   position: relative;
   cursor: pointer;
   transform: all 0.2s ease-in-out;
@@ -155,30 +161,64 @@ body {
   transform: scale(0.98);
 }
 
-/* Cancel btn */
+/* Cancel btn styles */
 .close-btn {
-    background-color: #f44336;
-    color: white;
-    border: none;
-    border-radius: 0.5em;
-    padding: 0.75em 1.5em;
-    font-size: 1em;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    margin-top: 0.5em;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 0.5em;
+  padding: 0.75em 1.5em;
+  font-size: 1em;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  margin-top: 0.5em;
 }
 
 .close-btn:hover {
-    background-color: #d32f2f;
-    transform: scale(1.05);
+  background-color: #d32f2f;
+  transform: scale(1.05);
 }
 
-.cancel-close:active {
-    transform: scale(0.98);
+.close-btn:active {
+  transform: scale(0.98);
 }
 
-.form-actions {
+/* .form-actions {
     display: flex;
     justify-content: flex-end;
     margin: 1em;
+} */
+.task-edit-container {
+  background-color: #2c3033;
+  border-radius: 0.625em;
+  margin-bottom: 0.5em;
+  padding: 0;
+}
+
+.task-edit-form {
+  padding: 0.9375em;
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.9375em;
+  border-bottom: 0.0625em solid rgba(255, 255, 255, 0.1);
+}
+
+.edit-task-title {
+    font-size: 1rem
+}
+
+.edit-task-date {
+    color: #888;
+    font-size: 14px;
+}
+
+.task-footer {
+    display: flex;
+    justify-content: center;
+    gap: 0.625em;
+    padding: 0.625em 0.9375em;
 }
