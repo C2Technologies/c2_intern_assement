@@ -1,8 +1,9 @@
-from pydantic import BaseModel
+from sqlmodel import SQLModel, Field
 
 
-class Todo(BaseModel):
-    id: int
+# task model for our database
+class Task(SQLModel, table=True):
+    id: int = Field(primary_key=True)
     title: str
     description: str
-    completed: bool
+    completed: bool = Field(default=False)

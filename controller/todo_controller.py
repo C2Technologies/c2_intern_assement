@@ -1,56 +1,59 @@
-from fastapi import APIRouter, Body
+from typing import Annotated
 
-from persistence import database_crud
-from response import error, success
+from fastapi import APIRouter, Body, Depends, HTTPException
 from fastapi.responses import RedirectResponse
+from sqlmodel import Session
 
-root_path = "/task"
-from model.todo import Todo
+from model.todo import Task
+from persistence import database_crud
+from persistence.database import get_session
+from response import success  # Ensure these modules handle JSON responses correctly
 
 router = APIRouter()
 
 
+# Root Redirect
 @router.get("/")
 def main():
     return RedirectResponse(url="/tasks", status_code=302)
 
 
+# Get all tasks
 @router.get("/tasks")
-def get_tasks():
-    tasks = database_crud.get_all_takes()
+def get_tasks(session: Session = Depends(get_session)):
+    tasks = database_crud.get_all_takes(session)
     return success.jsons_get_response(tasks)
 
 
+# Get a task by ID
 @router.get("/task/{task_id}")
-def get_tasks(task_id: int):
-    tasks = database_crud.get_take_by_id(task_id)
-    if tasks:
-        return success.jsons_get_response(tasks)
-    return {"message": "type shii"}
+def get_task(task_id: int, session: Session = Depends(get_session)):
+    task = database_crud.get_take_by_id(task_id, session)
+    if not task:
+        raise HTTPException(status_code=404, detail="Task not found")
+    return success.jsons_get_response(task)
 
 
-@router.post('/task/')
-def add_task(task: Todo = Body(...)):
-    print(task)
-    is_success = database_crud.add_task(task)
-    if is_success:
-        return success.json_added_response(task)
-    return {"message": "type shii"}
+# Add a new task
+@router.post("/task/")
+def add_task(task: Task = Body(...), session: Session = Depends(get_session)):
+    task_created = database_crud.add_task(task, session)
+    return success.json_added_response(task_created)
 
 
-@router.put('/task/{task_id}')
-def update_task(task_id, task: Todo = Body(...)):
-    is_success = database_crud.update_take_by_id(task_id, task)
-    if is_success:
-        return success.json_update_response(task)
-    return {"message": "type shii"}
+# Update an existing task
+@router.put("/task/{task_id}")
+def update_task(task_id: int, task: Task = Body(...), session: Session = Depends(get_session)):
+    updated_task = database_crud.update_take_by_id(task_id, session, task)
+    return success.json_update_response(updated_task)
 
 
-@router.delete('/task/{task_id}')
-def delete_task(task_id):
-    task_exists = database_crud.get_take_by_id(task_id)
-    if task_exists:
-        is_success = database_crud.delete_take_by_id(task_id)
-        if is_success:
-            return success.json_remove_response(task_exists)
-    return {"message": "type shii"}
+# Delete a task
+@router.delete("/task/{task_id}")
+def delete_task(task_id: int, session: Session = Depends(get_session)):
+    task = database_crud.get_take_by_id(task_id, session)
+    if not task:
+        raise HTTPException(status_code=404, detail="Task not found")
+
+    database_crud.delete_take_by_id(task_id, session)
+    return success.json_remove_response(task)

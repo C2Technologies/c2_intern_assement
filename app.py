@@ -1,10 +1,19 @@
 import uvicorn
 from fastapi import FastAPI
+
 from starlette.middleware.cors import CORSMiddleware
+from persistence import database
 
 from controller import todo_controller
 
 app = FastAPI()
+
+
+@app.on_event("startup")
+def on_startup():
+    database.create_table()
+
+
 app.include_router(todo_controller.router)
 app.add_middleware(
     CORSMiddleware,

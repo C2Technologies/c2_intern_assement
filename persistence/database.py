@@ -1,32 +1,13 @@
-dummy_data = [
-    {
-        "id": 1,
-        "title": "Buy groceries",
-        "description": "Milk, bread, eggs, and some fruits.",
-        "completed": False
-    },
-    {
-        "id": 2,
-        "title": "Complete project",
-        "description": "Finish the FastAPI and React project and submit it.",
-        "completed": False
-    },
-    {
-        "id": 3,
-        "title": "Call mom",
-        "description": "Catch up with mom over the phone.",
-        "completed": True
-    },
-    {
-        "id": 4,
-        "title": "Read a book",
-        "description": "Finish reading 'The Great Gatsby'.",
-        "completed": False
-    },
-    {
-        "id": 5,
-        "title": "Go for a run",
-        "description": "Run 5 km around the park.",
-        "completed": True
-    }
-]
+URL_DATABASE = "postgresql://postgres:retro@localhost:8787/todo"
+from sqlmodel import Field, Session, SQLModel, create_engine, select
+
+engine = create_engine(URL_DATABASE)
+
+
+def create_table():
+    SQLModel.metadata.create_all(engine)
+
+
+def get_session():
+    with Session(engine) as session:
+        yield session

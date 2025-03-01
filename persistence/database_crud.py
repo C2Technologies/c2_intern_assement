@@ -1,44 +1,39 @@
-from persistence import database
-from model.todo import Todo
+from fastapi import HTTPException
+from sqlmodel import Session
+
+from model.todo import Task
 
 
-def add_task(task):
-    database.dummy_data.append(task)
+def add_task(task: Task, session: Session):
+    session.add(task)
+    session.commit()
+    session.refresh(task)
     return True
 
 
-def remove_take_by_id(task_id):
-    for task in database.dummy_data:
-        if task['id'] == task_id:
-            database.dummy_data.remove(task)
-            return True
-    return False
+def delete_take_by_id(task_id, session: Session):
+    task = session.get(Task, task_id)
+    if task is None:
+        raise HTTPException(status_code=404, detail="Task not found")
+    session.delete(task)
+    session.commit()
+    return True
 
 
-def update_take_by_id(task_id, task_: Todo):
-    for task in database.dummy_data:
-        if task['id'] == int(task_id):
-            database.dummy_data.remove(task)
-            database.dummy_data.append(task)
-            return True
-    return False
+def update_take_by_id(task_id: int, session: Session, task: Task):
+    _task = session.get(Task, task_id)
+    if task is None:
+        raise HTTPException(status_code=404, detail="Task not found")
+    _task = task
+    return add_task(task, session)
 
 
-def delete_take_by_id(task_id):
-    for task in database.dummy_data:
-        print(task['id'])
-        if task['id'] == task_id:
-            database.dummy_data.remove(task)
-            return True
-    return False
+def get_take_by_id(task_id: int, session: Session):
+    task = session.get(Task, task_id)
+    if task is None:
+        raise HTTPException(status_code=404, detail="Task not found")
+    return task
 
 
-def get_take_by_id(task_id):
-    for task in database.dummy_data:
-        if task['id'] == task_id:
-            return task
-    return None
-
-
-def get_all_takes():
-    return database.dummy_data
+def get_all_takes(session: Session):
+    return session.query(Task).all()
