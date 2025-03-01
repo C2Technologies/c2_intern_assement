@@ -17,14 +17,16 @@ def remove_take_by_id(task_id):
 
 def update_take_by_id(task_id, task_: Todo):
     for task in database.dummy_data:
-        if task['id'] == task_id:
-            task.task_ = task_
+        if task['id'] == int(task_id):
+            database.dummy_data.remove(task)
+            database.dummy_data.append(task)
             return True
     return False
 
 
 def delete_take_by_id(task_id):
     for task in database.dummy_data:
+        print(task['id'])
         if task['id'] == task_id:
             database.dummy_data.remove(task)
             return True

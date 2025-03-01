@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Body
 
 from persistence import database_crud
 from response import error, success
@@ -29,8 +29,9 @@ def get_tasks(task_id: int):
     return {"message": "type shii"}
 
 
-@router.post('/task/{task_id}')
-def add_task(task: Todo):
+@router.post('/task/')
+def add_task(task: Todo = Body(...)):
+    print(task)
     is_success = database_crud.add_task(task)
     if is_success:
         return success.json_added_response(task)
@@ -38,7 +39,7 @@ def add_task(task: Todo):
 
 
 @router.put('/task/{task_id}')
-def update_task(task_id, task: Todo):
+def update_task(task_id, task: Todo = Body(...)):
     is_success = database_crud.update_take_by_id(task_id, task)
     if is_success:
         return success.json_update_response(task)

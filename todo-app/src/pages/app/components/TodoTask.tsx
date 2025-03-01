@@ -2,35 +2,39 @@ import { useState } from "react";
 import "../styles/TodoTask.css";
 import { Todo } from "../../../models/Task";
 import ModifyTodo from "./ModifyTodo";
+import { deleteTodo, updateTodo } from "../../../utils/requests";
 
 type TodoTaskProps = {
   task: Todo;
-  onSave: (updatedTodo: Todo) => void;
-  onCancel: () => void;
 };
 
-const TodoTask: React.FC<TodoTaskProps> = ({ task, onSave, onCancel }) => {
-  const [completed, setCompleted] = useState(task.completed);
+const TodoTask: React.FC<TodoTaskProps> = ({ task }) => {
   const [edit, setEdit] = useState(false);
 
-  const handleStatusChange = () => {
-    setCompleted(!completed);
+  const handleStatusChange = async () => {
+    let todo = task;
+    todo.completed = !task.completed;
+    await handleEdit(todo);
   };
 
-  const handleSave = (updatedTodo: Todo) => {
-    onSave(updatedTodo);
-    setEdit(false);
-  };
-
-  // Cancel edit mode
-  const handleCancel = () => {
-    setEdit(false);
-    onCancel();
-  };
-
-  // Handle delete (implement later)
   const handleDelete = async () => {
-    console.log(`Deleting task: ${task.id}`);
+    try {
+      await deleteTodo(task.id);
+    } catch (error) {
+      alert(error);
+    } finally {
+      setEdit(false);
+    }
+  };
+
+  const handleEdit = async (todo: Todo) => {
+    try {
+      await updateTodo(todo);
+    } catch (error) {
+      alert(error);
+    } finally {
+      setEdit(false);
+    }
   };
 
   return (
@@ -42,7 +46,9 @@ const TodoTask: React.FC<TodoTaskProps> = ({ task, onSave, onCancel }) => {
           onCancel={() => {
             setEdit(false);
           }}
-          onSave={() => {}}
+          onSave={async (todo) => {
+            await handleEdit(todo);
+          }}
         />
       )}
 
@@ -54,9 +60,14 @@ const TodoTask: React.FC<TodoTaskProps> = ({ task, onSave, onCancel }) => {
 
         <div className="task-actions">
           <button className="status-btn" onClick={handleStatusChange}>
-            {completed ? "Completed" : "Mark as Complete"}
+            {task.completed ? "Completed" : "Mark as Complete"}
           </button>
-          <button className="edit-btn" onClick={() => setEdit(true)}>
+          <button
+            className="edit-btn"
+            onClick={() => {
+              setEdit(true);
+            }}
+          >
             Edit
           </button>
           <button className="delete-btn" onClick={handleDelete}>

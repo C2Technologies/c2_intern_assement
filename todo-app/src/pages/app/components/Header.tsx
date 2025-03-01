@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "../styles/header.css";
 import TodoModal from "./ModifyTodo";
+import { createTodo } from "../../../utils/requests";
 type props = {
   taskCount: number;
 };
@@ -14,8 +15,14 @@ const Header = ({ taskCount }: props) => {
           onCancel={() => {
             setEdit(false);
           }}
-          onSave={() => {
-            setEdit(false);
+          onSave={async (todo) => {
+            try {
+              await createTodo(todo);
+            } catch (error) {
+              alert(error);
+            } finally {
+              setEdit(false);
+            }
           }}
         />
       )}
