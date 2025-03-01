@@ -16,27 +16,32 @@ const Form = ({
   submitButtonText = "Add"
 }: FormProps) => {
   return (
-    <div>
+    <div className="form-container">
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="title">Title</label>
+        <div className="form-group">
+          <label htmlFor="title" className="form-label">Title</label>
           <input
             id="title"
             type="text"
             value={title}
             onChange={handleTitleChange}
+            className="form-input"
+            placeholder="Enter task title"
+            required
           />
         </div>
-        <div>
-          <label htmlFor="description">Description</label>
+        <div className="form-group">
+          <label htmlFor="description" className="form-label">Description</label>
           <input
             id="description"
             type="text"
             value={description}
             onChange={handleDescriptionChange}
+            className="form-input"
+            placeholder="Enter your task description"
           />
         </div>
-        <button type="submit">{submitButtonText}</button>
+        <button type="submit" className="submit-btn">{submitButtonText}</button>
       </form>
     </div>
   );
