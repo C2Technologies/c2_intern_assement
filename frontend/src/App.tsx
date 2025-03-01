@@ -114,12 +114,21 @@ const App = () => {
 
   return (
     <>
-      <h2>Tasks</h2>
       <ToggleForm
-        buttonLabel={editingTaskId !== null ? "Edit Task" : "Add new Task"}
+        buttonLabel="Add new Task"
         onCancel={resetInputFields}
         isVisible={formVisible}
         setIsVisible={setFormVisible}
+        taskTitle={editingTaskId !== null ? title : "New Task"}
+        taskDate={
+          editingTaskId !== null &&
+          todoTasks.find((task) => task.id === editingTaskId)?.createdAt
+            ? new Date(
+                todoTasks.find((task) => task.id === editingTaskId)
+                  ?.createdAt || ""
+              ).toLocaleDateString()
+            : new Date().toLocaleDateString()
+        }
       >
         <Form
           title={title}
@@ -130,11 +139,10 @@ const App = () => {
           submitButtonText={editingTaskId !== null ? "Update" : "Add"}
         />
       </ToggleForm>
-      <h2>Task List</h2>
-      <FilterRadioInputs
+      {/* <FilterRadioInputs
         currentFilter={currentFilter}
         onFilterChange={handleFilterChange}
-      />
+      /> */}
       <TaskList
         tasks={filteredTasks}
         handleStatusChange={changeTaskStatus}

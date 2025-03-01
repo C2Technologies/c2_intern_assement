@@ -6,6 +6,8 @@ interface ToggleFormProps {
   onCancel?: () => void;
   isVisible?: boolean;
   setIsVisible?: (visible: boolean) => void;
+  taskTitle?: string;
+  taskDate?: string;
 }
 
 const ToggleForm = ({
@@ -14,6 +16,8 @@ const ToggleForm = ({
   onCancel,
   isVisible: externalVisible,
   setIsVisible: setExternalVisible,
+  taskTitle = "Fallback Date",
+  taskDate = "31/12/2000"
 }: ToggleFormProps) => {
   const [internalVisible, setInternalVisible] = useState<boolean>(false);
   const isControlled =
@@ -39,8 +43,8 @@ const ToggleForm = ({
       {visible && (
         <div className="task-edit-container">
           <div className="task-header">
-            <span className="edit-task-title">Default Task</span>
-            <span className="edit-task-date">31/12/2020</span>
+            <span className="edit-task-title">{taskTitle}</span>
+            <span className="edit-task-date">{taskDate}</span>
           </div>
           <div className="task-form-edit">{children}</div>
           <div className="task-footer">
