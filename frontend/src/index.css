@@ -1,16 +1,17 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 .task-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid;
+  margin: 12px 0px;
+  border: 1px solid black;
   border-radius: 10px;
-  padding: 10px;
+  padding: 15px;
 }
 
 .task-left {
@@ -23,4 +24,26 @@
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.delete-btn, .edit-btn {
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.delete-btn img {
+    width: 25px;
+    height: auto;
+    transform: 0.2s ease-in-out;
+}
+
+.edit-btn img {
+    width: 20px;
+    height: auto;
+    transform: 0.2s ease-in-out;
+}
+
+.delete-btn img:hover, .edit-btn img:hover {
+    transform: scale(1.2);
 }
