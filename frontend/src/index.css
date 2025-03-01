@@ -11,6 +11,7 @@ body {
   overflow: hidden;
   background-color: #373c3f;
   color: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* App container styles */
@@ -52,12 +53,15 @@ body {
 /* TaskList styles */
 .task-list {
   margin-top: 1em;
-  height: 100vh;
+  height: auto;
+  max-height: calc(100vh - 20rem);
+  overflow-y: auto;
 }
 
 /* TaskItem styles */
 .task-container {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   margin: 0.5em 0.75em;
@@ -65,13 +69,20 @@ body {
   border-radius: 0.625em;
   padding: 0.9375em;
   background-color: #2c3033;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.task-container:hover {
+  transform: translateY(-0.125em);
+  box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.2);
 }
 
 .task-left {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 0.9375em;
+  flex: 1;
 }
 
 .task-right {
@@ -86,25 +97,23 @@ body {
   border: none;
   cursor: pointer;
   background-color: transparent;
+  transition: transform 0.2s ease-in-out;
 }
 
 .delete-btn img {
   width: 1.5625em;
   height: auto;
-  transform: 0.2s ease-in-out;
 }
 
 .edit-btn img {
   width: 1.25em;
   height: auto;
-  transform: 0.2s ease-in-out;
 }
 
 .expand-btn img {
   color: gray;
   width: 1.25em;
   height: auto;
-  transform: 0.2s ease-in-out;
 }
 
 .delete-btn img:hover,
@@ -115,6 +124,10 @@ body {
 
 .task-name {
   font-size: 1.25em;
+  word-break: break-word;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .custom-checkbox input {
@@ -130,6 +143,7 @@ body {
   position: relative;
   cursor: pointer;
   transform: all 0.2s ease-in-out;
+  flex-shrink: 0;
 }
 
 .custom-checkbox input:checked + span {
@@ -142,7 +156,7 @@ body {
   font-size: 1.0625em;
   color: white;
   position: absolute;
-  margin-left: 0.125em;
+  margin-left: 0.0625em;
 }
 
 /* Form styles */
@@ -198,6 +212,8 @@ body {
   margin-top: 0.5em;
   min-width: 6.25em;
   height: 2.6em;
+  align-items: center;
+  justify-content: center;
 }
 
 .submit-btn:hover {
@@ -207,6 +223,12 @@ body {
 
 .submit-btn:active {
   transform: scale(0.98);
+}
+
+.submit-btn:disabled {
+  background-color: #77a479;
+  cursor: not-allowed;
+  transform: none;
 }
 
 /* Cancel btn styles */
@@ -236,6 +258,7 @@ body {
   border-radius: 0.625em;
   margin-bottom: 0.5em;
   padding: 0;
+  box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.2);
 }
 
 .task-edit-form {
@@ -248,10 +271,14 @@ body {
   align-items: center;
   padding: 0.9375em;
   border-bottom: 0.0625em solid rgba(255, 255, 255, 0.1);
+  background-color: #232628;
+  border-top-left-radius: 0.625em;
+  border-top-right-radius: 0.625em;
 }
 
 .edit-task-title {
   font-size: 1rem;
+  font-weight: 600;
 }
 
 .edit-task-date {
@@ -265,6 +292,10 @@ body {
   align-items: center;
   gap: 0.625em;
   padding: 0.625em 0.9375em;
+  border-top: 0.0625em solid rgba(255, 255, 255, 0.1);
+  background-color: #232628;
+  border-bottom-left-radius: 0.625em;
+  border-bottom-right-radius: 0.625em;
 }
 
 .button-content {
@@ -295,6 +326,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 3rem 1rem;
+  color: #888;
+  text-align: center;
 }
 
 .toggle-form-btn {
@@ -359,6 +393,8 @@ body {
   padding: 0.9375em;
   background-color: #2c3033;
   border-radius: 0.625em;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .filter-container label {
@@ -368,9 +404,12 @@ body {
   font-size: 1em;
   color: white;
   transition: all 0.2s ease-in-out;
+  padding: 0.5em 1em;
+  border-radius: 0.5em;
 }
 
 .filter-container label:hover {
+  background-color: rgba(76, 175, 80, 0.1);
   color: #4caf50;
 }
 
