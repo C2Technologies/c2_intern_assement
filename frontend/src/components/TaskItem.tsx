@@ -30,8 +30,12 @@ const TaskItem = ({
         <p>{title}</p>
       </div>
       <div className="task-right">
-        <button onClick={handleTaskDeletion}>Delete</button>
-        <button onClick={handleTaskEdit}>Edit</button>
+        <button onClick={handleTaskEdit} className="edit-btn">
+          <img src="public/images/pen.svg" alt="edit icon" />
+        </button>
+        <button onClick={handleTaskDeletion} className="delete-btn">
+          <img src="public/images/icons8-trash-1-dark.svg" alt="delete icon" />
+        </button>
       </div>
       {/* <p>{description}</p> */}
     </div>
