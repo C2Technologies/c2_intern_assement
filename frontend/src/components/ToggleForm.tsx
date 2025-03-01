@@ -8,12 +8,18 @@ interface ToggleFormProps {
   setIsVisible?: (visible: boolean) => void;
 }
 
-const ToggleForm = ({ buttonLabel, children, onCancel, isVisible: externalVisible, setIsVisible: setExternalVisible }: ToggleFormProps) => {
+const ToggleForm = ({
+  buttonLabel,
+  children,
+  onCancel,
+  isVisible: externalVisible,
+  setIsVisible: setExternalVisible,
+}: ToggleFormProps) => {
   const [internalVisible, setInternalVisible] = useState<boolean>(false);
-  const isControlled = externalVisible !== undefined && setExternalVisible !== undefined;
+  const isControlled =
+    externalVisible !== undefined && setExternalVisible !== undefined;
   const visible = isControlled ? externalVisible : internalVisible;
   const setVisible = isControlled ? setExternalVisible : setInternalVisible;
-
 
   const toggleVisibility = () => {
     setVisible(!visible);
@@ -25,11 +31,19 @@ const ToggleForm = ({ buttonLabel, children, onCancel, isVisible: externalVisibl
 
   return (
     <div>
-      {!visible && <button onClick={toggleVisibility}>{buttonLabel}</button>}
+      {!visible && (
+        <button onClick={toggleVisibility} className="submit-btn">
+          {buttonLabel}
+        </button>
+      )}
       {visible && (
         <div>
           {children}
-          <button onClick={toggleVisibility}>Cancel</button>
+          <div className="form-actions">
+            <button onClick={toggleVisibility} className="close-btn">
+              Close
+            </button>
+          </div>
         </div>
       )}
     </div>

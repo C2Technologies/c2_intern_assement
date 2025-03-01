@@ -154,3 +154,31 @@ body {
 .submit-btn:active {
   transform: scale(0.98);
 }
+
+/* Cancel btn */
+.close-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 0.5em;
+    padding: 0.75em 1.5em;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    margin-top: 0.5em;
+}
+
+.close-btn:hover {
+    background-color: #d32f2f;
+    transform: scale(1.05);
+}
+
+.cancel-close:active {
+    transform: scale(0.98);
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin: 1em;
+}
