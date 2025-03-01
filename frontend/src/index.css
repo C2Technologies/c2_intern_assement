@@ -45,7 +45,7 @@ body {
 }
 
 .delete-btn,
-.edit-btn {
+.edit-btn, .expand-btn {
   border: none;
   cursor: pointer;
   background-color: transparent;
@@ -63,8 +63,15 @@ body {
   transform: 0.2s ease-in-out;
 }
 
+.expand-btn img {
+  color: gray;
+  width: 1.25em;
+  height: auto;
+  transform: 0.2s ease-in-out;
+}
+
 .delete-btn img:hover,
-.edit-btn img:hover {
+.edit-btn img:hover, .expand-btn:hover {
   transform: scale(1.2);
 }
 

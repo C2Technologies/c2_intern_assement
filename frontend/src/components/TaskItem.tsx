@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 interface TaskDetails {
   title: string;
   description: string;
@@ -9,12 +11,18 @@ interface TaskDetails {
 
 const TaskItem = ({
   title,
-  // description,
+  description,
   completed,
   handleStatusChange,
   handleTaskDeletion,
   handleTaskEdit,
 }: TaskDetails) => {
+  const [isExpanded, setIsExpanded] = useState<boolean>(false);
+
+  const toggleDescription = () => {
+    setIsExpanded(!isExpanded);
+  };
+
   return (
     <div className="task-container">
       <div className="task-left">
@@ -30,6 +38,14 @@ const TaskItem = ({
         <p className="task-name">{title}</p>
       </div>
       <div className="task-right">
+        <button onClick={toggleDescription} className="expand-btn">
+          <img
+            src={`public/images/${
+              isExpanded ? "chevron-up" : "chevron-down"
+            }.svg`}
+            alt={isExpanded ? "collapse" : "expand"}
+          />
+        </button>
         <button onClick={handleTaskEdit} className="edit-btn">
           <img src="public/images/pen.svg" alt="edit icon" />
         </button>
@@ -37,7 +53,11 @@ const TaskItem = ({
           <img src="public/images/icons8-trash-1-dark.svg" alt="delete icon" />
         </button>
       </div>
-      {/* <p>{description}</p> */}
+      {/* {isExpanded && description && (
+        <div className="task-description">
+          <p>{description}</p>
+        </div>
+      )} */}
     </div>
   );
 };
