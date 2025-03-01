@@ -120,44 +120,48 @@ const App = () => {
     <div className="app-container">
       <div className="app-content">
         <h1 className="app-title">To-Do Task Manager</h1>
-        <ToggleForm
-          buttonLabel="Add new Task"
-          onCancel={resetInputFields}
-          isVisible={formVisible}
-          setIsVisible={setFormVisible}
-          taskTitle={editingTaskId !== null ? title : "New Task"}
-          taskDate={
-            editingTaskId !== null &&
-            todoTasks.find((task) => task.id === editingTaskId)?.createdAt
-              ? new Date(
-                  todoTasks.find((task) => task.id === editingTaskId)
-                    ?.createdAt || ""
-                ).toLocaleDateString()
-              : new Date().toLocaleDateString()
-          }
-        >
-          <Form
-            title={title}
-            description={description}
-            handleTitleChange={({ target }) => setTitle(target.value)}
-            handleDescriptionChange={({ target }) =>
-              setDescription(target.value)
+        <div className="app-controls">
+          <ToggleForm
+            buttonLabel="Add new Task"
+            onCancel={resetInputFields}
+            isVisible={formVisible}
+            setIsVisible={setFormVisible}
+            taskTitle={editingTaskId !== null ? title : "New Task"}
+            taskDate={
+              editingTaskId !== null &&
+              todoTasks.find((task) => task.id === editingTaskId)?.createdAt
+                ? new Date(
+                    todoTasks.find((task) => task.id === editingTaskId)
+                      ?.createdAt || ""
+                  ).toLocaleDateString()
+                : new Date().toLocaleDateString()
             }
-            handleSubmit={handleTaskSubmit}
-            submitButtonText={editingTaskId !== null ? "Update" : "Add"}
-            loading={loading}
+          >
+            <Form
+              title={title}
+              description={description}
+              handleTitleChange={({ target }) => setTitle(target.value)}
+              handleDescriptionChange={({ target }) =>
+                setDescription(target.value)
+              }
+              handleSubmit={handleTaskSubmit}
+              submitButtonText={editingTaskId !== null ? "Update" : "Add"}
+              loading={loading}
+            />
+          </ToggleForm>
+          <FilterRadioInputs
+            currentFilter={currentFilter}
+            onFilterChange={handleFilterChange}
           />
-        </ToggleForm>
-        <FilterRadioInputs
-          currentFilter={currentFilter}
-          onFilterChange={handleFilterChange}
-        />
-        <TaskList
-          tasks={filteredTasks}
-          handleStatusChange={changeTaskStatus}
-          handleTaskDeletion={deleteTodoTask}
-          handleTaskEdit={handleTaskEdit}
-        />
+        </div>
+        <div className="tasks-section">
+          <TaskList
+            tasks={filteredTasks}
+            handleStatusChange={changeTaskStatus}
+            handleTaskDeletion={deleteTodoTask}
+            handleTaskEdit={handleTaskEdit}
+          />
+        </div>
       </div>
     </div>
   );
