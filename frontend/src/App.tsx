@@ -25,10 +25,30 @@ const App = () => {
 
   useEffect(() => {
     const fetchToDoTasks = async () => {
-      setInitialLoading(initialLoading);
+      setInitialLoading(true);
       try {
-        const tasks = await getAllTasks();
-        setTodoTasks(tasks);
+        const cachedData = localStorage.getItem("todoTasks");
+        const cacheTimestamp = localStorage.getItem("todoTasksTimestamp");
+        const now = new Date().getTime();
+
+        if (
+          cachedData &&
+          cacheTimestamp &&
+          now - parseInt(cacheTimestamp) < 5 * 60 * 1000
+        ) {
+          setTodoTasks(JSON.parse(cachedData));
+          setInitialLoading(false);
+          getAllTasks().then((tasks) => {
+            setTodoTasks(tasks);
+            localStorage.setItem("todoTasks", JSON.stringify(tasks));
+            localStorage.setItem("todoTasksTimestamp", now.toString());
+          });
+        } else {
+          const tasks = await getAllTasks();
+          setTodoTasks(tasks);
+          localStorage.setItem("todoTasks", JSON.stringify(tasks));
+          localStorage.setItem("todoTasksTimestamp", now.toString());
+        }
       } catch (error) {
         console.error("Error fetching todo tasks:", error);
       } finally {
@@ -117,9 +137,15 @@ const App = () => {
   };
 
   const filteredTasks = todoTasks.filter((task) => {
-    if (currentFilter === "ALL") return true;
-    if (currentFilter === "COMPLETED") return task.completed;
-    if (currentFilter === "PENDING") return !task.completed;
+    if (currentFilter === "ALL") {
+      return true;
+    }
+    if (currentFilter === "COMPLETED") {
+      return task.completed;
+    }
+    if (currentFilter === "PENDING") {
+      return !task.completed;
+    }
     return true;
   });
 

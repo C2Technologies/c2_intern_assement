@@ -13,6 +13,7 @@ This is the frontend for the To-Do App, built using React and TypeScript. It int
 - Delete a task
 - Filter tasks by status (All, Completed, Pending)
 - Sort tasks by creation date
+- Cache data fetched from server - cache lifespan is 5 minutes
 
 ## Tech Stack
 - **Frontend**: React, TypeScript
