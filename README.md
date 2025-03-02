@@ -14,6 +14,14 @@ The **To-Do App** is a task management application designed to help users effici
 
 ---
 
+## Live Demo
+A live demo of the application is available here:  
+👉 [To-Do App Live Demo](c2-intern-assement.vercel.app)  
+
+**Note**: The live application is not connected to a database.
+
+---
+
 ## Requirements
 To run this application locally, ensure your system meets the following prerequisites:
 
@@ -36,7 +44,7 @@ Follow these steps to set up and run the application locally.
 ### 1. Clone the Repository
 Clone the repository to your local machine using Git:
 ```bash
-git clone git@github.com:codestays/c2_intern_assement.git
+git clone --branch todo-app-Ernest-Matshabe git@github.com:codestays/c2_intern_assement.git
 ```
 
 ### 2. Clone the Repository
