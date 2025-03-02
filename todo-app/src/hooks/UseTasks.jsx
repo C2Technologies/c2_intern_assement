@@ -18,7 +18,6 @@ const UseTasks = () => {
           console.error("Fetch error:", error);
         });
     };
-
     getTasks();
   }, []);
 

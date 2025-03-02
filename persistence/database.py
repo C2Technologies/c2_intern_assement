@@ -1,5 +1,6 @@
+from sqlmodel import Session, SQLModel, create_engine
+
 URL_DATABASE = "postgresql://postgres:retro@localhost:8787/todo"
-from sqlmodel import Field, Session, SQLModel, create_engine, select
 
 engine = create_engine(URL_DATABASE)
 

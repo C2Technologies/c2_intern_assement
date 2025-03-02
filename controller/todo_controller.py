@@ -20,7 +20,7 @@ def main():
 @router.get("/tasks")
 def get_tasks(session: Session = Depends(get_session)):
     try:
-        tasks = database_crud.get_all_takes(session)
+        tasks = database_dao.get_all_takes(session)
         return success.jsons_get_response(tasks)
     except HTTPException as e:
         return error.error_response("unexpected error")
@@ -30,7 +30,7 @@ def get_tasks(session: Session = Depends(get_session)):
 @router.get("/task/{task_id}")
 def get_task(task_id: int, session: Session = Depends(get_session)):
     try:
-        task = database_crud.get_take_by_id(task_id, session)
+        task = database_dao.get_take_by_id(task_id, session)
         return success.jsons_get_response(task)
     except HTTPException as e:
         return error.error_response("unexpected error")
@@ -40,7 +40,7 @@ def get_task(task_id: int, session: Session = Depends(get_session)):
 @router.post("/task/")
 def add_task(task: Task = Body(...), session: Session = Depends(get_session)):
     try:
-        task_created = database_crud.add_task(task, session)
+        task_created = database_dao.add_task(task, session)
         return success.json_added_response(task_created)
     except HTTPException as e:
         return error.error_response("unexpected error")
@@ -50,7 +50,7 @@ def add_task(task: Task = Body(...), session: Session = Depends(get_session)):
 @router.put("/task/{task_id}")
 def update_task(task_id: int, task: Task = Body(...), session: Session = Depends(get_session)):
     try:
-        updated_task = database_crud.update_take_by_id(task_id, session, task)
+        updated_task = database_dao.update_take_by_id(task_id, session, task)
         return success.json_update_response(updated_task)
     except HTTPException as e:
         return error.error_response("unexpected error")
@@ -60,8 +60,8 @@ def update_task(task_id: int, task: Task = Body(...), session: Session = Depends
 @router.delete("/task/{task_id}")
 def delete_task(task_id: int, session: Session = Depends(get_session)):
     try:
-        task = database_crud.get_take_by_id(task_id, session)
-        database_crud.delete_take_by_id(task_id, session)
+        task = database_dao.get_take_by_id(task_id, session)
+        database_dao.delete_take_by_id(task_id, session)
         return success.json_remove_response(task)
     except HTTPException as e:
         return error.error_response("unexpected error")

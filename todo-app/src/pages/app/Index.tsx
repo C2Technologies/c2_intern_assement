@@ -4,16 +4,14 @@ import Sidebar from "./components/Sidebar";
 import "./styles/dropdown.css";
 import TodoTask from "./components/TodoTask";
 import { Todo } from "../../models/Task";
-import ModifyTodo from "./components/ModifyTodo";
 import UseTasks from "../../hooks/UseTasks";
-
 const Index = () => {
   const [selectedOption, setSelectedOption] = useState(
     "Status (In progress first)"
   );
-  const tasks = UseTasks();
 
   const options = ["All", "Status (In progress)", "Status (Completed)"];
+  const tasks = UseTasks();
 
   return (
     <div
@@ -34,7 +32,7 @@ const Index = () => {
           paddingRight: 40,
         }}
       >
-        <Header taskCount={tasks !== undefined ? tasks.data.length : 0} />
+        <Header taskCount={tasks !== undefined ? tasks.length : 0} />
         <div className="sort-by-dropdown">
           <span className="label">Sort by</span>
           <select
@@ -51,7 +49,7 @@ const Index = () => {
         </div>
         <div>
           {tasks !== undefined &&
-            tasks.data.map((task: Todo) => <TodoTask task={task} />)}
+            tasks.map((task: Todo) => <TodoTask key={task.id} task={task} />)}
         </div>
       </div>
     </div>
