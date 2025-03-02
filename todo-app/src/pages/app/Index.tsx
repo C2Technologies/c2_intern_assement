@@ -49,7 +49,17 @@ const Index = () => {
         </div>
         <div>
           {tasks !== undefined &&
-            tasks.map((task: Todo) => <TodoTask key={task.id} task={task} />)}
+            tasks
+              .filter((task: Todo) => {
+                if (selectedOption === options[2]) {
+                  return task.completed === true;
+                } else if (selectedOption === options[1]) {
+                  return task.completed === false; //
+                } else {
+                  return task.completed !== null;
+                }
+              })
+              .map((task: Todo) => <TodoTask key={task.id} task={task} />)}
         </div>
       </div>
     </div>
