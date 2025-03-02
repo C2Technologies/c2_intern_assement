@@ -15,6 +15,8 @@ const createTodo = async (todo: Todo) => {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
+    alert("Todo created successfully");
+
     return await response.json();
   } catch (error) {
     console.error("Create Todo Error:", error);
@@ -35,6 +37,7 @@ const updateTodo = async (todo: Todo) => {
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
+    alert("Todo updated successfully");
 
     return await response.json();
   } catch (error) {
@@ -52,6 +55,7 @@ const deleteTodo = async (todoId: number) => {
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
+    alert("Todo deleted successfully");
 
     return await response.json();
   } catch (error) {

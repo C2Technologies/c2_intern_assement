@@ -22,6 +22,7 @@ const Header = ({ taskCount }: props) => {
               alert(error);
             } finally {
               setEdit(false);
+              window.location.reload();
             }
           }}
         />
