@@ -27,6 +27,8 @@ Todo list application build on react for the front end and fastAPI for the back 
 
 To run the application, execute:
 
+root env don't forget to add your postgresql link then in todo app env add your clerk authkey
+
 ```sh
 sh startup.sh
 ```
