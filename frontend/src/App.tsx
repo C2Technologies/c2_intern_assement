@@ -93,6 +93,11 @@ const App = () => {
       resetInputFields();
       const updatedTodoTasks = await getAllTasks();
       setTodoTasks(updatedTodoTasks);
+      localStorage.setItem("todoTasks", JSON.stringify(updatedTodoTasks));
+      localStorage.setItem(
+        "todoTasksTimestamp",
+        new Date().getTime().toString()
+      );
     } catch (error) {
       console.error(error);
     } finally {
@@ -108,6 +113,9 @@ const App = () => {
 
       const updatedTodoTasks = await getAllTasks();
       setTodoTasks(updatedTodoTasks);
+      localStorage.setItem("todoTasks", JSON.stringify(updatedTodoTasks));
+      const now = new Date().getTime();
+      localStorage.setItem("todoTasksTimestamp", now.toString());
     } catch (error) {
       console.error(error);
     }
@@ -127,6 +135,8 @@ const App = () => {
       setTodoTasks((previousTodoTasks) =>
         previousTodoTasks.filter((task) => task.id !== taskId)
       );
+      localStorage.removeItem("todoTasks");
+      localStorage.removeItem("todoTasksTimestamp");
     } catch (error) {
       console.error(error);
     }
