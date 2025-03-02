@@ -25,7 +25,7 @@ const TaskItem = ({
 
   return (
     <div className="task-container">
-      <div className="task-content">
+      <div className="task-header">
         <div className="task-left">
           <label className="custom-checkbox">
             <input

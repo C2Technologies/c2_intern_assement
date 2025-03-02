@@ -140,19 +140,19 @@ body {
 
 .task-description {
   width: 100%;
-  padding: 0.9375em; 
+  padding: 0.9375em;
   margin-top: 0.9375em;
   border-top: 0.0625em solid rgba(255, 255, 255, 0.1);
   line-height: 1.5;
   font-size: 0.9375em;
-  color: #888; 
-  background-color: #232628; 
+  color: #888;
+  background-color: #232628;
   border-radius: 0.375em;
   animation: fadeIn 0.3s ease-out;
   text-align: left;
 }
 
-.task-content {
+.task-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -477,5 +477,21 @@ body {
 
   .app-controls {
     margin: 0 0.5rem;
+  }
+
+  .task-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .task-right {
+    width: 100%;
+    justify-content: flex-end;
+    margin-top: 0.75em;
+  }
+
+  .task-description {
+    padding: 0.75em;
+    margin-top: 0.75em;
   }
 }
