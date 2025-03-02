@@ -59,8 +59,10 @@ const App = () => {
       if (editingTaskId !== null) {
         await updateTask(editingTaskId, taskData);
         setEditingTaskId(null);
+        setFormVisible(false);
       } else {
         await createTask(taskData);
+        setFormVisible(false); 
       }
 
       resetInputFields();
