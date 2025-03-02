@@ -11,6 +11,7 @@ import { FilterType, Task, TaskCreate } from "./types/types";
 import { TaskList } from "./components/TaskList";
 import { ToggleForm } from "./components/ToggleForm";
 import { FilterRadioInputs } from "./components/FilterRadioInputs";
+import { TaskSkeleton } from "./components/TaskSkeleton";
 
 const App = () => {
   const [todoTasks, setTodoTasks] = useState<Task[]>([]);
@@ -20,14 +21,18 @@ const App = () => {
   const [formVisible, setFormVisible] = useState<boolean>(false);
   const [currentFilter, setCurrentFilter] = useState<FilterType>("ALL");
   const [loading, setLoading] = useState<boolean>(false);
+  const [initialLoading, setInitialLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchToDoTasks = async () => {
+      setInitialLoading(initialLoading);
       try {
         const tasks = await getAllTasks();
         setTodoTasks(tasks);
       } catch (error) {
         console.error("Error fetching todo tasks:", error);
+      } finally {
+        setInitialLoading(false);
       }
     };
     fetchToDoTasks();
@@ -62,7 +67,7 @@ const App = () => {
         setFormVisible(false);
       } else {
         await createTask(taskData);
-        setFormVisible(false); 
+        setFormVisible(false);
       }
 
       resetInputFields();
@@ -157,12 +162,16 @@ const App = () => {
           />
         </div>
         <div className="tasks-section">
-          <TaskList
-            tasks={filteredTasks}
-            handleStatusChange={changeTaskStatus}
-            handleTaskDeletion={deleteTodoTask}
-            handleTaskEdit={handleTaskEdit}
-          />
+          {initialLoading ? (
+            <TaskSkeleton count={5} />
+          ) : (
+            <TaskList
+              tasks={filteredTasks}
+              handleStatusChange={changeTaskStatus}
+              handleTaskDeletion={deleteTodoTask}
+              handleTaskEdit={handleTaskEdit}
+            />
+          )}
         </div>
       </div>
     </div>
