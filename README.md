@@ -16,7 +16,7 @@ The **To-Do App** is a task management application designed to help users effici
 
 ## Live Demo
 A live demo of the application is available here:  
-👉 [To-Do App Live Demo](c2-intern-assement.vercel.app)  
+👉 [Click here to visit the application](https://c2-intern-assement.vercel.app/)
 
 **Note**: The live application is not connected to a database.
 
