@@ -1,6 +1,12 @@
-from sqlmodel import Session, SQLModel, create_engine
+from sqlmodel import Session, SQLModel, create_engine  # importing os module for environment variables
+import os
+# importing necessary functions from dotenv library
+from dotenv import load_dotenv, dotenv_values
 
-URL_DATABASE = "postgresql://postgres:retro@localhost:8787/todo"
+# loading variables from .env file
+load_dotenv()
+
+URL_DATABASE = os.getenv("POSTGRESQL")
 
 engine = create_engine(URL_DATABASE)
 
