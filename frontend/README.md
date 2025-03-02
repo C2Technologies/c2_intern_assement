@@ -1,50 +1,50 @@
-# React + TypeScript + Vite
+# To-Do Task Manager
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview 
 
-Currently, two official plugins are available:
+This is the frontend for the To-Do App, built using React and TypeScript. It interacts with the FastAPI backend to manage tasks, providing a simple, clean and responsive UI.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- Create a task with a title and description
+- Retrieve and display all tasks
+- Edit a task's title and description
+- Mark a task as complete or incomplete
+- Delete a task
+- Filter tasks by status (All, Completed, Pending)
+- Sort tasks by creation date
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Tech Stack
+- **Frontend**: React, TypeScript
+- **State Management**: useState
+- **API Communication**: axios
+- **Styling**: CSS
 
-- Configure the top-level `parserOptions` property like this:
+## Setup and installation
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### API Integration
+
+The frontend interacts with the backend API using `axios`. Ensure the backend is running before making requests
+
+### Prerequisites
+
+- Node.js v18+ or 20+
+- Package manager (npm, yarn, etc..)
+
+1. Clone the Repository
+```bash
+https://github.com/C2Technologies/c2_intern_assement
+cd c2_intern_assement
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+2. Install Dependencies
+```bash
+npm install
 ```
+
+3. Run the Development Server
+```bash
+npm run dev
+```
+
+The application will be available at `http://localhost:5173/`
