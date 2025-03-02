@@ -5,14 +5,6 @@ The **To-Do App** is a task management application designed to help users effici
 
 ---
 
-## Live Demo
-A live demo of the application is available here:  
-👉 [To-Do App Live Demo](https://ernest-matshabe.vercel.app/)  
-
-**Note**: The live application is not connected to a database.
-
----
-
 ## Features
 - **Task Management**: Create, edit, and delete tasks.
 - **Intuitive Interface**: User-friendly design for seamless task organization.
