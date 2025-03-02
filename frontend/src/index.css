@@ -70,6 +70,9 @@ body {
   padding: 0.9375em;
   background-color: #2c3033;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  flex-direction: row;
+  flex-wrap: wrap;
+  transition: all 0.3s ease-out;
 }
 
 .task-container:hover {
@@ -128,6 +131,32 @@ body {
   max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+/* TaskItem expansion styles */
+.task-expanded {
+  padding-bottom: 0.625em;
+}
+
+.task-description {
+  width: 100%;
+  padding: 0.9375em; 
+  margin-top: 0.9375em;
+  border-top: 0.0625em solid rgba(255, 255, 255, 0.1);
+  line-height: 1.5;
+  font-size: 0.9375em;
+  color: #888; 
+  background-color: #232628; 
+  border-radius: 0.375em;
+  animation: fadeIn 0.3s ease-out;
+  text-align: left;
+}
+
+.task-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .custom-checkbox input {
@@ -253,6 +282,7 @@ body {
   transform: scale(0.98);
 }
 
+/* Task Edit UI */
 .task-edit-container {
   background-color: #2c3033;
   border-radius: 0.625em;
@@ -335,54 +365,15 @@ body {
   margin: 1em;
 }
 
-/* TaskDescriptionDialog styles */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
-.modal-dialog {
-  background-color: #444a4e;
-  padding: 1.5em;
-  border-radius: 0.625em;
-  width: 80%;
-  max-width: 31.25em;
-  position: relative;
-}
-
-.dialog-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.close-button {
-  position: absolute;
-  top: 0.5em;
-  right: 0.5em;
-  background: transparent;
-  border: none;
-  font-size: 1.5em;
-  color: white;
-  cursor: pointer;
-}
-
-.modal-content p {
-  margin-top: 1em;
-  font-size: 1em;
-  line-height: 1.5;
-}
-
-.edit-task-title {
-  color: #888;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-0.625em);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* FilterRadioInputs styles */
