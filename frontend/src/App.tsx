@@ -23,6 +23,25 @@ const App = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [initialLoading, setInitialLoading] = useState<boolean>(true);
 
+  /**
+   *
+   * Sorts tasks by creationDate and if !createdDate, it checks the ID of tasks and
+   * sorts them by creation date (first task has lower id than the one that follows)
+   *
+   */
+  const sortAndSetTasks = (tasks: Task[]) => {
+    const sortedTasks = [...tasks].sort((a, b) => {
+      if (!a.createdAt || !b.createdAt) {
+        return a.id - b.id;
+      }
+
+      return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
+    });
+
+    setTodoTasks(sortedTasks);
+    return sortedTasks;
+  };
+
   useEffect(() => {
     const fetchToDoTasks = async () => {
       setInitialLoading(true);
@@ -36,17 +55,17 @@ const App = () => {
           cacheTimestamp &&
           now - parseInt(cacheTimestamp) < 5 * 60 * 1000
         ) {
-          setTodoTasks(JSON.parse(cachedData));
+          sortAndSetTasks(JSON.parse(cachedData));
           setInitialLoading(false);
           getAllTasks().then((tasks) => {
-            setTodoTasks(tasks);
-            localStorage.setItem("todoTasks", JSON.stringify(tasks));
+            const sortedTasks = sortAndSetTasks(tasks);
+            localStorage.setItem("todoTasks", JSON.stringify(sortedTasks));
             localStorage.setItem("todoTasksTimestamp", now.toString());
           });
         } else {
           const tasks = await getAllTasks();
-          setTodoTasks(tasks);
-          localStorage.setItem("todoTasks", JSON.stringify(tasks));
+          const sortedTasks = sortAndSetTasks(tasks);
+          localStorage.setItem("todoTasks", JSON.stringify(sortedTasks));
           localStorage.setItem("todoTasksTimestamp", now.toString());
         }
       } catch (error) {
@@ -92,8 +111,8 @@ const App = () => {
 
       resetInputFields();
       const updatedTodoTasks = await getAllTasks();
-      setTodoTasks(updatedTodoTasks);
-      localStorage.setItem("todoTasks", JSON.stringify(updatedTodoTasks));
+      const sortedTasks = sortAndSetTasks(updatedTodoTasks);
+      localStorage.setItem("todoTasks", JSON.stringify(sortedTasks));
       localStorage.setItem(
         "todoTasksTimestamp",
         new Date().getTime().toString()
@@ -112,8 +131,8 @@ const App = () => {
       await updateTaskStatus(taskId, newState);
 
       const updatedTodoTasks = await getAllTasks();
-      setTodoTasks(updatedTodoTasks);
-      localStorage.setItem("todoTasks", JSON.stringify(updatedTodoTasks));
+      const sortedTasks = sortAndSetTasks(updatedTodoTasks);
+      localStorage.setItem("todoTasks", JSON.stringify(sortedTasks));
       const now = new Date().getTime();
       localStorage.setItem("todoTasksTimestamp", now.toString());
     } catch (error) {
