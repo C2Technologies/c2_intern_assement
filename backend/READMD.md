@@ -108,3 +108,7 @@ The API will be available at `http://127.0.0.1:8000/`
 
 You can use `Postman` to test API endpoints. Alternatively, you can open `http://127.0.0.1:8000/docs` in the browser to use the Swagger UI.
 
+8. To deactivate the virtual environment, simply run
+```bash
+deactivate
+```
