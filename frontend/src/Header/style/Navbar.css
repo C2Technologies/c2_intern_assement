@@ -1,0 +1,87 @@
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+header{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#navbar{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 25%;
+}
+
+#navbar-container{
+    width: 100%;
+    display: flex;
+    margin-top: 18px;
+    
+}
+
+.navbar-item{
+    width: 100%;
+}
+
+#navbar-right{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+#navbar-left{
+    display: flex;
+    align-items: center;
+}
+
+#navbar-logo-container{
+    background-color: #F1F1F1;
+    cursor: pointer;
+}
+
+#to-do-heading{
+    font-size: 10px;
+    font-weight: 700;
+}
+
+#navbar-logo-container{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+#navbar-icon-container{
+    display: flex;
+    gap: 20px;
+
+}
+
+.navbar-icon-link{
+    cursor: pointer;
+}
+
+
+
+
+
+
+@media (max-width: 1024px) {
+    #navbar {
+        padding: 0px 15%;
+    }
+}
+
+@media (max-width: 480px) {
+    #navbar {
+        padding: 0px 10%;
+    }
+}
