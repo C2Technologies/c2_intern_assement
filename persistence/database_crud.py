@@ -1,5 +1,5 @@
 from fastapi import HTTPException
-from sqlmodel import Session
+from sqlmodel import Session, select
 
 from model.todo import Task
 
@@ -24,8 +24,10 @@ def update_take_by_id(task_id: int, session: Session, task: Task):
     _task = session.get(Task, task_id)
     if task is None:
         raise HTTPException(status_code=404, detail="Task not found")
-    _task = task
-    return add_task(task, session)
+    _task.completed = task.completed
+    _task.title = task.title
+    _task.description = task.description
+    return add_task(_task, session)
 
 
 def get_take_by_id(task_id: int, session: Session):

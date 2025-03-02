@@ -2,7 +2,7 @@ from fastapi import APIRouter, Body, Depends, HTTPException
 from fastapi.responses import RedirectResponse
 from sqlmodel import Session
 
-from model.todo import Task, ClientTask
+from model.todo import Task
 from persistence import database_crud
 from persistence.database import get_session
 from response import success

@@ -8,10 +8,3 @@ class Task(SQLModel, table=True):
     title: str
     description: str
     completed: bool = Field(default=False)
-
-
-# a copy of task model to avoid hardcoded ID
-class ClientTask(BaseModel):
-    title: str
-    description: str
-    completed: bool = False

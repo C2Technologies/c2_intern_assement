@@ -17,12 +17,14 @@ export default function TodoModal({
   const [description, setDescription] = useState("");
   const [completed, setCompleted] = useState(false);
   const tasks = UseTasks();
+  const [id, setId] = useState(tasks);
 
   useEffect(() => {
     if (currentTodo !== undefined) {
       setTitle(currentTodo!.title);
       setDescription(currentTodo!.description);
       setCompleted(currentTodo!.completed);
+      setId(currentTodo.id);
     }
   }, []);
 
@@ -33,7 +35,7 @@ export default function TodoModal({
     }
 
     const newTodo: Todo = {
-      id: tasks.length,
+      id,
       title,
       description,
       completed,
@@ -43,6 +45,7 @@ export default function TodoModal({
     setTitle("");
     setDescription("");
     setCompleted(false);
+    setId(null);
   };
 
   if (!isOpen) return null; // Don't render modal if it's not open
