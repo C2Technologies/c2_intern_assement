@@ -54,7 +54,7 @@ const Index = () => {
                 if (selectedOption === options[2]) {
                   return task.completed === true;
                 } else if (selectedOption === options[1]) {
-                  return task.completed === false; //
+                  return task.completed === false;
                 } else {
                   return task.completed !== null;
                 }
