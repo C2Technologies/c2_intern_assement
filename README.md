@@ -86,7 +86,7 @@ where python
 pip install -r requirements.txt
 ```
 
-5. Create a `.env` file in the root directory and add
+5. Create a `.env` file in the root directory (inside backend/) and add
 ```
 SQLALCHEMY_DATABASE_URL=postgresql://username:password@localhost:5432/todo_db
 ```
