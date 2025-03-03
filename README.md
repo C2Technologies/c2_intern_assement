@@ -21,9 +21,6 @@ The **To-Do App** is a task management application designed to help users effici
   - `GET /tasks/{task_id}` → Retrieve a single task.
   - `PUT /tasks/{task_id}` → Update a task (title, description, completed status).
   - `DELETE /tasks/{task_id}` → Delete a task.
-- Use **PostgreSQL** as the database.
-- Store each task with an **auto-incrementing ID**.
-
   
 ---
 
