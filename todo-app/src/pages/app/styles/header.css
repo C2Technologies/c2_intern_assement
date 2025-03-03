@@ -1,0 +1,29 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  padding-top: 20px;
+}
+
+.header-left h2 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.badge {
+  background-color: #444;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  margin-left: 8px;
+}
+
+.new-btn {
+  background-color: #007bff;
+  border: none;
+  padding: 8px 16px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
