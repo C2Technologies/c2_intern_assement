@@ -1,0 +1,14 @@
+body {
+  background-color: #F1F1F1;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: #3C3C3C;
+  font-family: "Poppins-Regular", Helvetica;
+  font-size: 12px;
+  line-height: 1;
+}
+
