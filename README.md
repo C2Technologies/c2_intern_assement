@@ -9,9 +9,22 @@ The **To-Do App** is a task management application designed to help users effici
 - **Task Management**: Create, edit, and delete tasks.
 - **Intuitive Interface**: User-friendly design for seamless task organization.
 - **Responsive Design**: Works on both desktop and mobile devices.
-- **Backend Integration**: Built with Python (Flask/Django/FastAPI) for the backend and React for the frontend.
+- **Backend Integration**: Built with Python FastAPI for the backend and React for the frontend.
 - **Database Support**: Uses PostgreSQL for persistent data storage.
 
+
+### Backend
+
+- A **REST API** with the following endpoints:
+  - `POST /tasks` → Create a new task.
+  - `GET /tasks` → Retrieve all tasks.
+  - `GET /tasks/{task_id}` → Retrieve a single task.
+  - `PUT /tasks/{task_id}` → Update a task (title, description, completed status).
+  - `DELETE /tasks/{task_id}` → Delete a task.
+- Use **PostgreSQL** as the database.
+- Store each task with an **auto-incrementing ID**.
+
+  
 ---
 
 ## Live Demo
