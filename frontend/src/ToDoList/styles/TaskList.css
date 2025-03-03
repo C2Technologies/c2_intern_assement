@@ -1,0 +1,162 @@
+
+#list-task-container{
+    max-height: 320px;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+:root{
+    --width-size: 375px;
+    --icon-box-size: 20px
+}
+
+.filler{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#list-task-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#task-container{
+    background-color: white;
+    height: 86px;
+    max-width: var(--width-size);
+    width: 100%;
+    border-radius: 20px;
+    transition: transform 0.1s ease;
+    padding: 10px 20px;
+    box-sizing: border-box;
+}
+
+#task{
+    width: 100%;
+    height: 100%;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#task-top-container{
+    display: flex;
+    flex-direction: column;
+}
+
+#task-top-inner-container, #task-bottom-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+#divider{
+    background-color: #898989;
+    opacity: 50%;
+    height: 0.5px;
+    width: 100%;
+    transform: translateY(14px);
+}
+
+.task-top-item, .task-bottom-item{
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+#task-ti-middle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #898989;
+}
+#task-desciption-icon{
+    cursor: pointer;
+
+}
+
+#task-ti-right, #task-bi-right{
+    display: flex;
+    justify-content: end;
+}
+
+.task-icon-container{
+    position: relative;
+    height: var(--icon-box-size);
+    width: var(--icon-box-size);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 8px;
+}
+
+
+.status-check {
+    height: 14px;
+    width: 14px;
+    background-color: white;
+    border: 1px solid rgba(137, 137, 137, 0.5);
+    color: white;
+    border-radius: 100%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.status-check.clicked {
+    background-color: #007bff;
+    border: none
+  }
+
+
+#task-status{
+    position: absolute;
+    transform: translateY(16px);
+}
+
+#delete-task{
+    cursor: pointer;
+}
+
+#task-title-container{
+    cursor: pointer;
+}
+
+#task-date{
+    color: #898989;
+    font-size: 10px;
+}
+
+#edit-title{
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 100%;
+    font-size: 12px;
+}
+
+#edit-container{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+}
+
+#list-container{
+    position: relative;
+}
+
+.task-title.completed{
+    text-decoration: line-through;
+}
