@@ -3,6 +3,7 @@ import schema
 import database
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
+import asyncio
 
 app =  FastAPI()
 
@@ -13,6 +14,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"], 
 )
+
 
 @app.get("/")
 async def home():
@@ -49,6 +51,12 @@ async def delete_task(task_id: int):
     return response
 
 
+async def main():
+    await database.initialize()
+    await database.create_table()
+    
     
 if __name__ == "__main__":
+    asyncio.run(main())
     uvicorn.run(app, host="127.0.0.1", port=8000)
+    
