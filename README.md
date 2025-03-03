@@ -1,68 +1,161 @@
-# To-Do App Assessment
+# To-Do Task Manager
 
-## Overview
 
-This assessment requires you to build a simple **To-Do application** using **React, Python FastAPI/Django, and CSS**. The backend will store tasks in a **PostgreSQL database**.
+## Backend Overview 
 
-## Requirements
+This is the backend for the To-Do App built using FastAPI and PostgreSQL. It provides a RESTful API to manage tasks, including creating, updating, deleting, and retrieving tasks
 
-### Features
+## Features
 
-- ✅ **Task Management**
-  - Users can **create** a task with a **title** and **description**.
-  - Users can **edit** a task’s title and description.
-  - Users can **delete** tasks.
-  - Users can **mark a task as completed/incomplete**.
-- ✅ **Filtering & Sorting**
-  - Users can **filter tasks** by **completed** and **pending**.
-  - Tasks should be **sorted** by **creation date**.
-- ✅ **Basic UI & Responsiveness**
-  - The **UI must be clean and responsive**.
-  - Users should be able to interact smoothly with tasks.
+- Create a task with a title and description.
+- Retrieve all tasks.
+- Retrieve a single task.
+- Update a task (title, description).
+- Update the `complete` status of a task.
+- Delete a single task.
 
----
+## Tech Stack
 
-## Technical Requirements
+- **Backend**: FastAPI(Python)
+- **Database**: PostgreSQL
+- **ORM**: SQLAlchemy
+- **Environment Management**: Python Virtual Environment
 
-### Backend
+## API Endpoints
 
-- A **REST API** with the following endpoints:
-  - `POST /tasks` → Create a new task.
-  - `GET /tasks` → Retrieve all tasks.
-  - `GET /tasks/{task_id}` → Retrieve a single task.
-  - `PUT /tasks/{task_id}` → Update a task (title, description, completed status).
-  - `DELETE /tasks/{task_id}` → Delete a task.
-- Use **PostgreSQL** as the database.
-- Store each task with an **auto-incrementing ID**.
+| Methods    | Endpoint         | Description
+|------------|------------------|--------------------------
+| POST       | /tasks           | Create a new task
+| GET        | /tasks           | Retrieve all tasks
+| GET        | /tasks/{task_id} | Retrieve a single task
+| PUT        | /tasks/{task_id} | Update a single task (title, description)
+| PATCH      | /tasks/{task_id} | Update a single task (completed status)
+| DELETE     | /tasks/{task_id} | Delete a single task
 
-### Frontend (React + CSS)
+## Setup and Prerequisites
 
-- **State management**: Use `useState`.
-- **API Calls**: Use `fetch` or `axios` to communicate with the FastAPI server.
-- **Task List UI**: Display tasks with options to **edit**, **delete**, and **mark complete**.
-- **Filters**: Buttons to show **All, Completed, and Pending** tasks.
+### Prerequisites
 
----
+- Python 3.8+
+- Pip 
+- PostgreSQL installed and running
+- Virtual environment (recommended)
 
-## Evaluation Criteria
+### Running the server
 
-🔹 **Code Quality** → Clean, modular, decoupled, readable, and well-structured code.  
-🔹 **Functionality** → Meets all core feature requirements.  
-🔹 **Performance** → API is efficient and UI interactions are smooth.  
-🔹 **Creativity** → Bonus features or design improvements.
+1. Clone the project and `cd` into the project
 
----
+```bash
+https://github.com/C2Technologies/c2_intern_assement
+cd c2_intern_assement
+```
 
-## Submission Guidelines
+2. Switch to the following branch `todo-app-atlegang-sethono`
+```bash
+git checkout todo-app-atlegang-sethono
+```
 
-1. To start clone this project onto your laptop.
-2. Branch off of master branch creating your own feature branch, with naming convention: todo-app-yourName-yourSurname.
-3. When you're done with building and testing your app, **Push the code** to **GitHub on your profile* - be sure not to push it into the master branch.
-5. Include a **README.md** explaining how to run the project and any special notes you want to make us aware of.
-6. **If the project cannot run on our side, unfortunately then we will not be able to evaluate it properly - so it is improtant that your app works.**
+3. Create and activate a Virtual Environment
+For Unix/macOS
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
 
----
+For Windows
+```bash
+py -m venv .venv
+.venv\Scripts\activate
+```
 
-## Contact
+To confirm the virtual environment is activated, check the location of your Python interpreter
 
-For any questions, reach out to **thulaganyo@lortechnologies.com or craig@lortechnologies.com**.
+For Unix/macOS
+```bash
+which python
+```
+
+For Windows
+```bash
+where python
+```
+
+4. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+5. Create a `.env` file in the root directory and add
+```
+SQLALCHEMY_DATABASE_URL=postgresql://username:password@localhost:5432/todo_db
+```
+Replace `username`, `password` and `todo_db` with your actual PostgreSQL credentials
+
+5. Apply Database Migrations 
+
+```bash
+alembic upgrade head
+```
+
+6. Run the FastAPI Server
+```bash
+uvicorn main:app --reload
+```
+
+The API will be available at `http://127.0.0.1:8000/`
+
+7. Testing the API
+
+You can use `Postman` to test API endpoints. Alternatively, you can open `http://127.0.0.1:8000/docs` in the browser to use the Swagger UI.
+
+8. To deactivate the virtual environment, simply run
+```bash
+deactivate
+```
+
+## Front-Overview 
+
+This is the frontend for the To-Do App, built using React and TypeScript. It interacts with the FastAPI backend to manage tasks, providing a simple, clean and responsive UI.
+
+## Features
+
+- Create a task with a title and description
+- Retrieve and display all tasks
+- Edit a task's title and description
+- Mark a task as complete or incomplete
+- Delete a task
+- Filter tasks by status (All, Completed, Pending)
+- Sort tasks by creation date
+- Cache data fetched from server - cache lifespan is 5 minutes
+
+## Tech Stack
+- **Frontend**: React, TypeScript
+- **State Management**: useState
+- **API Communication**: axios
+- **Styling**: CSS
+
+## Setup and installation
+
+### API Integration
+
+The frontend interacts with the backend API using `axios`. Ensure the backend is running before making requests
+
+### Prerequisites
+
+- Node.js v18+ or 20+
+- Package manager (npm, yarn, etc..)
+
+While still in the `git checkout todo-app-atlegang-sethono` branch, cd into `frontend`
+
+1. Install Dependencies
+```bash
+npm install
+```
+
+2. Run the Development Server
+```bash
+npm run dev
+```
+
+The application will be available at `http://localhost:5173/`
